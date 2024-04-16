@@ -10,8 +10,8 @@ function App() {
             <div className="app-body">
                 <BrowserRouter>
                     <Routes>
-                        <Route data-testid='homeComponent' path="/" element={<Home />} />
-                        <Route data-testid='giveCommandComponent' path="/give" element={<GiveCommand />} />
+                        <Route path="/" element={<Home />} />
+                        <Route path="/give" element={<GiveCommand />} />
                     </Routes>
                 </BrowserRouter>
             </div>

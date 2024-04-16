@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
-import App from '../App';
 import Home from '../components/Home';
 import GiveCommand from '../components/GiveCommand';
 
@@ -15,7 +14,7 @@ describe('App component', () => {
             </BrowserRouter>
         );
 
-        const homeComponent = screen.getByTestId('homeComponent');
+        const homeComponent = screen.getByTestId('Home');
         expect(homeComponent).toBeInTheDocument();
     });
 
@@ -23,12 +22,12 @@ describe('App component', () => {
         render(
             <BrowserRouter>
                 <Routes>
-                    <Route path="/give" element={<GiveCommand />} />
+                    <Route path="/" element={<GiveCommand />} />
                 </Routes>
             </BrowserRouter>
         );
 
-        const giveCommandComponent = screen.getByTestId('giveCommandComponent');
+        const giveCommandComponent = screen.getByTestId('GiveCommand');
         expect(giveCommandComponent).toBeInTheDocument();
     });
 });
