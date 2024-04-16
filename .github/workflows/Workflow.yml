@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+    types: [closed]
 
   workflow_dispatch:
 
@@ -50,4 +51,10 @@ jobs:
     steps:
 
       - name: Deploy
-        run: echo "Not deploying to production..."
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          password: ${{ secrets.REMOTE_PASSWORD }}
+          port: ${{ secrets.REMOTE_PORT }}
+          script: deploy_commandcraftor
