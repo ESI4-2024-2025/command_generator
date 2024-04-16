@@ -17,7 +17,7 @@ const ButtonsJavaEdition: React.FC<McButtonsProps> = ({taille, title, path}) => 
     if (path === "goback") {
         return (
             <div className="McButtons" onClick={goBack}>
-                <div className={`mc-button full btn-taille${taille}`}>
+                <div className={`mc-button full btn-taille-${taille}`}>
                     <div className="title">{title}</div>
                 </div>
             </div>
@@ -26,7 +26,7 @@ const ButtonsJavaEdition: React.FC<McButtonsProps> = ({taille, title, path}) => 
         return (
             <Link to={`/${path}`}>
                 <div className="McButtons">
-                    <div className={`mc-button full btn-taille${taille}`}>
+                    <div className={`mc-button full btn-taille-${taille}`}>
                         <div className="title">{title}</div>
                     </div>
                 </div>

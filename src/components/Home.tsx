@@ -1,13 +1,19 @@
-import ButtonsJavaEdition from "@/Components/utilities/ButtonsJavaEdition.tsx";
-import "@/styles/styles.css"
-
+import ButtonsJavaEdition from "./utilities/ButtonsJavaEdition";
+import "../styles/Home.css"
 
 function Home() {
 
     return (
-        <div className="Home">
-            <ButtonsJavaEdition title="GIVE" taille="1" path="give"/>
-            <ButtonsJavaEdition title="ENCHANT" taille="1" path="enchant"/>
+        <div className="home">
+
+            <div className="home-buttons">
+                <ButtonsJavaEdition title="GIVE"
+                                    taille="19"
+                                    path="give"/>
+                <ButtonsJavaEdition title="ENCHANT"
+                                    taille="19"
+                                    path="enchant"/>
+            </div>
         </div>
     )
 
