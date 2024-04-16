@@ -57,4 +57,4 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           password: ${{ secrets.REMOTE_PASSWORD }}
           port: ${{ secrets.REMOTE_PORT }}
-          script: echo "deployed successfully"
+          script: /scripts/deployCommandCraftor.sh
