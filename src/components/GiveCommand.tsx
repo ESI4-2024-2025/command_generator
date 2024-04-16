@@ -4,7 +4,7 @@ import "../styles/GiveCommand.css"
 function GiveCommand() {
 
     return (
-        <div className="give-command">
+        <div className="give-command" data-testid="GiveCommand">
 
             <select name="item" id="item">
                 <option value="sword">Sword</option>
@@ -15,7 +15,6 @@ function GiveCommand() {
             <ButtonsJavaEdition taille="1" title="Retour" path="goback"/>
         </div>
     )
-
 }
 
 export default GiveCommand
