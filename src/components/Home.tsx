@@ -6,13 +6,13 @@ function Home() {
     return (
         <div className="home">
 
-            <div className="home-buttons">
+            <div className="home-buttons" data-testid="Home">
                 <ButtonsJavaEdition title="GIVE"
-                                    taille="19"
-                                    path="give"/>
+                    taille="19"
+                    path="give" />
                 <ButtonsJavaEdition title="ENCHANT"
-                                    taille="19"
-                                    path="enchant"/>
+                    taille="19"
+                    path="enchant" />
             </div>
         </div>
     )
