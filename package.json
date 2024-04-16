@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.69",
@@ -43,5 +42,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/register": "^7.23.7",
+    "@testing-library/react": "^15.0.2",
+    "babel-preset-react-app": "^10.0.1",
+    "cross-env": "^7.0.3",
+    "jasmine": "^5.1.0",
+    "jsdom": "^24.0.0"
   }
 }
