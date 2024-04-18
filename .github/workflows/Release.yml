@@ -1,7 +1,11 @@
 name: Generate Changelog
 on:
-  release:
-    types: [published, prereleased]
+on:
+  push:
+    tags:
+      - 'alpha*'
+      - 'beta*'
+      - 'release*'
 
 jobs:
   generate_changelog:
