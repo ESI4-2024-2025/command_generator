@@ -1,7 +1,8 @@
 name: Release
 on:
-  release:
-    types: [created, edited, prereleased]
+  push:
+    tags:
+      - "v*.*.*"
 
 jobs:
   Generate-changelog:
