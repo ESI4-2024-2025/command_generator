@@ -1,30 +1,21 @@
-name: Release
+name: Generate Changelog
 on:
-  release
+  release:
+    types: [published, prereleased]
 
 jobs:
-  Generate-changelog:
+  generate_changelog:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
-
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y git
       - name: Generate changelog
-        uses: heinrichreimer/github-changelog-generator-action@v2.1.1
+        run: |
+          PREVIOUS_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
+          git log --pretty=format:"%s" $PREVIOUS_TAG..HEAD > changelog.txt
+      - name: Upload changelog
+        uses: actions/upload-artifact@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-  Deploy:
-    runs-on: ubuntu-latest
-    needs: Generate-changelog
-
-    steps:
-
-      - name: Deploy
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          password: ${{ secrets.REMOTE_PASSWORD }}
-          port: ${{ secrets.REMOTE_PORT }}
-          script: /scripts/deployCommandCraftor.sh
+          name: changelog
+          path: changelog.txt
