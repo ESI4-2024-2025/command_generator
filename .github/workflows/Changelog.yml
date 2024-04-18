@@ -1,7 +1,5 @@
 name: Generate changelog
 on:
-  push:
-    branches: [ "changelogTests" ]
   release:
     types: [created, edited]
 
