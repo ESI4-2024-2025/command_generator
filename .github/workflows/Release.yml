@@ -1,5 +1,4 @@
-name: Generate Changelog
-on:
+name: Release
 on:
   push:
     tags:
