@@ -2,42 +2,58 @@
 
 ## Description
 
-command craftor est une application qui permet de créer des commandes minecraft en quelques clics.\
+Command Craftor est une application qui permet de créer des commandes minecraft en quelques clics.\
 le but de cette application est de simplifier la création de commandes minecraft en proposant une 
 interface graphique simple et intuitive pour tous.
 
 ## Fonctionnalités
 
-pour le moment, il n'y a pas de fonctionnalités disponibles.\
+Pour le moment, il n'y a pas de fonctionnalités disponibles.\
 le readme sera update au fur et à mesure de l'avancement du projet.
 
 # Utilisation
 
-l'application est en cours de développement, mais elle est acessible à l'adresse suivante:
-[command craftor](http://commandcraftor.ebasson.fr)
+L'application est en cours de développement, mais elle est acessible à l'adresse suivante:
+[command craftor](https://commandcraftor.ebasson.fr)
 
 ___
 
 # Développement
 
-## front
+## Front
 
-## back
+Le Front est fait en React TypeScript
 
-## base de données
+## Back
 
-## déploiement
+L'Api est En Node.Js
 
-avec github actions, un script est lancé a chaque push, ou pull request validé sur la 
+## Base de Données
+
+La Base de Donnée est une base MongoDB
+
+## Travail Fait
+
+Le travail fait sur GitHub est surtout dans la CI/CD et dans les Branches via les Nommages, les créations de Tags, et les Pull/Merge
+
+![alt text](/.github/imagesRM/image.png)
+
+
+
+## Déploiement
+
+Avec github actions, un script est lancé a chaque push, ou pull request validé sur la 
 branche main.
 
-ce script est découpé en 4 étapes:
-- linter
-- test
-- build
-- deploy
+Ce script est découpé en 4 étapes:
+- Linter
+- Test
+- Build
+- Deploy
 
-### linter
+## CI/CD
+
+### Linter
 ```yaml
 Linter:
   runs-on: ubuntu-latest
@@ -60,7 +76,7 @@ Dans ce contexte, elle exécute un linter pour TypeScript et/ou JavaScript.
 Si le linter détecte des erreurs dans le code, cette étape échouera, et par conséquent, le workflow 
 d'intégration continue échouera également.
 
-### test
+### Test
 ```yaml
 Tests:
   runs-on: ubuntu-latest
@@ -88,7 +104,7 @@ du job "Linter". Il comprend trois étapes :
 Si les tests échouent pour une raison quelconque (par exemple, si un test ne passe pas), 
 cette étape échouera, et par conséquent, le workflow d'intégration continue échouera également.
 
-### build
+### Build
 ```yaml
 Build:
   runs-on: ubuntu-latest
@@ -116,7 +132,7 @@ un bundle de l'application React.
 Si le processus de build échoue pour une raison quelconque (par exemple, si le code TypeScript ne peut pas 
 être compilé), cette étape échouera, et par conséquent, le workflow d'intégration continue échouera également.
 
-### deploy
+### Deploy
 ```yaml 
 Deploy:
   runs-on: ubuntu-latest
