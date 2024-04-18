@@ -1,4 +1,4 @@
-name: Linter, Tests, Build and Deploy
+name: Push
 
 on:
   push:
