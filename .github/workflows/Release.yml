@@ -31,6 +31,7 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
           draft: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           prerelease: false
 
   UploadChangelog:
