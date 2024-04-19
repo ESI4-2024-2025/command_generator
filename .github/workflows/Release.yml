@@ -54,6 +54,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: changelog
+      - name: Debug
+        run: |
+          echo "Upload URL: ${{ needs.CreateRelease.outputs.upload_url }}"
+          echo "Asset Path: ./changelog.txt"
       - name: Upload changelog to Release
         uses: actions/upload-release-asset@v1
         env:
