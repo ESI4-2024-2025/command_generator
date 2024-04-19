@@ -36,15 +36,22 @@ jobs:
           fi
       - name: Create Release
         id: create_release
-        uses: softprops/gh-release@v1
+        run: |
+          response=$(curl \
+            -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.TOKEN_RELEASE }}" \
+            https://api.github.com/repos/${{ github.repository }}/releases \
+            -d '{
+              "tag_name": "${{ github.ref }}",
+              "name": "${{ github.ref }}",
+              "draft": false,
+              "prerelease": ${{ steps.check_prerelease.outputs.prerelease }}
+            }')
+          upload_url=$(echo "$response" | jq -r .upload_url | sed -e "s/{?name,label}//")
+          echo "::set-output name=upload_url::$upload_url"
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_RELEASE }}
-        with:
-          tag_name: ${{ github.ref }}
-          name: ${{ github.ref }}
-          draft: false
-          prerelease: ${{ steps.check_prerelease.outputs.prerelease }}
-          body_path: changelog.txt
+          TOKEN_RELEASE: ${{ secrets.TOKEN_RELEASE }}
 
   UploadChangelog:
     needs: CreateRelease
