@@ -36,14 +36,15 @@ jobs:
           fi
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: softprops/gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_RELEASE }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
+          name: ${{ github.ref }}
           draft: false
           prerelease: ${{ steps.check_prerelease.outputs.prerelease }}
+          body_path: changelog.txt
 
   UploadChangelog:
     needs: CreateRelease
