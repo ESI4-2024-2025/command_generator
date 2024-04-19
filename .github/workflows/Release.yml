@@ -5,25 +5,8 @@ on:
       - 'v*'
 
 jobs:
-  GenerateChangelog:
+  Release:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Generate changelog
-        uses: heinrichreimer/github-changelog-generator-action@v2.1.1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Upload changelog
-        uses: actions/upload-artifact@v2
-        with:
-          name: changelog
-          path: changelog.txt
-
-  CreateRelease:
-    needs: GenerateChangelog
-    runs-on: ubuntu-latest
-    outputs:
-      upload_url: ${{ steps.create_release.outputs.upload_url }} # Set job output
     steps:
       - uses: actions/checkout@v2
       - name: Check if prerelease
@@ -36,48 +19,19 @@ jobs:
           fi
       - name: Create Release
         id: create_release
-        run: |
-          response=$(curl \
-            -X POST \
-            -H "Accept: application/vnd.github.v3+json" \
-            -H "Authorization: token ${{ secrets.TOKEN_RELEASE }}" \
-            https://api.github.com/repos/${{ github.repository }}/releases \
-            -d '{
-              "tag_name": "${{ github.ref }}",
-              "name": "${{ github.ref }}",
-              "draft": false,
-              "prerelease": ${{ steps.check_prerelease.outputs.prerelease }}
-            }')
-          upload_url=$(echo "$response" | jq -r .upload_url | sed -e "s/{?name,label}//")
-          echo "::set-output name=upload_url::$upload_url"
+        uses: mikeal/publish-to-github-action@master
         env:
-          TOKEN_RELEASE: ${{ secrets.TOKEN_RELEASE }}
-
-  UploadChangelog:
-    needs: CreateRelease
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Download changelog
-        uses: actions/download-artifact@v2
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: changelog
-      - name: Debug
-        run: |
-          echo "Upload URL: ${{ needs.CreateRelease.outputs.upload_url }}"
-          echo "Asset Path: ./changelog.txt"
-      - name: Upload changelog to Release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_ADDCHANGELOG }}
-        with:
-          upload_url: ${{ needs.CreateRelease.outputs.upload_url }} # Use job output
-          asset_path: ./changelog.txt
-          asset_name: changelog.txt
-          asset_content_type: text/plain
+          prerelease: ${{ steps.check_prerelease.outputs.prerelease }}
+          files: changelog.txt
+          name: Release ${{ github.ref }}
+          tag: ${{ github.ref }}
+          body: |
+            ${{ steps.changelog.outputs.changelog }}
 
   Deploy:
-    needs: UploadChangelog
+    needs: Release
     runs-on: ubuntu-latest
     steps:
       - name: Deploy
