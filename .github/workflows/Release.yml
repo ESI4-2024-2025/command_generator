@@ -22,6 +22,8 @@ jobs:
   CreateRelease:
     needs: GenerateChangelog
     runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }} # Set job output
     steps:
       - uses: actions/checkout@v2
       - name: Check if prerelease
@@ -57,7 +59,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ADDCHANGELOG }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          upload_url: ${{ needs.CreateRelease.outputs.upload_url }} # Use job output
           asset_path: ./changelog.txt
           asset_name: changelog.txt
           asset_content_type: text/plain
