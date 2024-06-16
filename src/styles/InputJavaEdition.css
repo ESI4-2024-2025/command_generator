@@ -1,0 +1,16 @@
+.minecraft-input {
+    background-color: #000000;
+    border: 3px solid white;
+    box-shadow: none;
+    color: #FFFFFF;
+    padding: 10px;
+    font-family: 'Minecraft', sans-serif;
+    font-size: 1.5em;
+    text-align: center;
+}
+.fixed-size {
+    width: 20rem;
+    height: 4rem;
+    box-sizing: border-box;
+    margin: 0;
+}

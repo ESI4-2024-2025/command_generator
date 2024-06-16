@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 import Home from '../components/Home';
-import GiveCommand from '../components/GiveCommand';
+import GiveCommand from '../components/GiveCommand/GiveCommand';
 
 describe('App component', () => {
     it('renders the Home component when the path is "/"', () => {

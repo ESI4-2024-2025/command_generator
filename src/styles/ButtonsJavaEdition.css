@@ -11,6 +11,15 @@
     width: 19vw;
 }
 
+.btn-taille-square{
+    aspect-ratio:1/1;
+    height: 5vh;
+}
+
+.mc-button.btn-taille-square .title {
+    padding: 0;
+}
+
 .mc-button {
     cursor: pointer;
     overflow: hidden;
@@ -48,4 +57,10 @@
 }
 .mc-button.lang .title {
     padding-bottom: 0;
+}
+
+.mc-button.disabled {
+    /* Vos styles pour le bouton désactivé ici */
+    opacity: 0.5;
+    cursor: not-allowed;
 }

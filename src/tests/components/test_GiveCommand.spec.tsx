@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import GiveCommand from '../../components/GiveCommand';
+import GiveCommand from '../../components/GiveCommand/GiveCommand';
 import { MemoryRouter } from 'react-router';
 
 describe('GiveCommand component', () => {

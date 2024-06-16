@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './styles/App.css';
 import Home from "./components/Home";
-import GiveCommand from "./components/GiveCommand";
+import GiveCommand from "./components/GiveCommand/GiveCommand";
 
 function App() {
     return (

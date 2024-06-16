@@ -10,9 +10,6 @@ function Home() {
                 <ButtonsJavaEdition title="GIVE"
                     taille="19"
                     path="give" />
-                <ButtonsJavaEdition title="ENCHANT"
-                    taille="19"
-                    path="enchant" />
             </div>
         </div>
     )
