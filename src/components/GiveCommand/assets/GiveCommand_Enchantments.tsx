@@ -1,19 +1,24 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import ButtonsJavaEdition from "../../utilities/ButtonsJavaEdition";
 import "../../../styles/InputJavaEdition.css";
 
-interface Enchantment {
-    name: string;
-    identifier: string;
-    lvlMax: number;
-}
-
 interface GiveCommandEnchantmentsProps {
-    enchantments: Enchantment[];
+    enchantments: {
+        name: string;
+        identifier: string;
+        lvlMax: number;
+    }[];
+    onValuesChange: (newValues: number[]) => void;
 }
 
-const GiveCommand_Enchantments: React.FC<GiveCommandEnchantmentsProps> = ({ enchantments }) => {
-    const [values, setValues] = useState<number[]>(new Array(enchantments.length).fill(0));
+const GiveCommand_Enchantments: React.FC<GiveCommandEnchantmentsProps> = ({ enchantments, onValuesChange }) => {
+    const [values, setValues] = useState<number[]>([]);
+
+    useEffect(() => {
+        if (values.length === 0) {
+            setValues(enchantments ? new Array(enchantments.length).fill(0) : []);
+        }
+    }, [enchantments, values]);
 
     const minus = (index: number) => {
         setValues(prevValues => {
@@ -34,6 +39,10 @@ const GiveCommand_Enchantments: React.FC<GiveCommandEnchantmentsProps> = ({ ench
             return newValues;
         });
     }
+
+    useEffect(() => {
+        onValuesChange(values);
+    }, [values]);
 
     return (
         <div className="main-container">
