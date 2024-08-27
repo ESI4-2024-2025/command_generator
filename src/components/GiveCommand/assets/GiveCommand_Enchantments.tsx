@@ -2,16 +2,19 @@ import React, {useEffect, useState} from 'react';
 import ButtonsJavaEdition from "../../utilities/ButtonsJavaEdition";
 import "../../../styles/InputJavaEdition.css";
 
-interface GiveCommandEnchantmentsProps {
-    enchantments: {
-        name: string;
-        identifier: string;
-        lvlMax: number;
-    }[];
+interface Enchantment {
+    _id: string;
+    nom: string;
+    identifier: string;
+    lvlMax: number;
+}
+
+interface GiveCommand_EnchantmentsProps {
+    enchantments: Enchantment[];
     onValuesChange: (newValues: number[]) => void;
 }
 
-const GiveCommand_Enchantments: React.FC<GiveCommandEnchantmentsProps> = ({ enchantments, onValuesChange }) => {
+const GiveCommand_Enchantments: React.FC<GiveCommand_EnchantmentsProps> = ({ enchantments, onValuesChange }) => {
     const [values, setValues] = useState<number[]>([]);
 
     useEffect(() => {
@@ -46,10 +49,10 @@ const GiveCommand_Enchantments: React.FC<GiveCommandEnchantmentsProps> = ({ ench
 
     return (
         <div className="main-container">
-            {enchantments.map((enchantment, index) => {
+            {enchantments && enchantments.map((enchantment, index) => {
                 return (
                     <div key={index} className="input-block">
-                        <label htmlFor={`input${index}`} className="text-minecraft">{enchantment.name}</label>
+                        <label htmlFor={`input${index}`} className="text-minecraft">{enchantment.nom}</label>
                         <ButtonsJavaEdition taille="square" title="-" onClick={() => minus(index)}
                                             disabled={values[index] === 0}/>
                         <input className="minecraft-input"

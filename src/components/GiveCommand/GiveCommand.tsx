@@ -3,87 +3,53 @@ import ButtonsJavaEdition from "../utilities/ButtonsJavaEdition";
 import GiveCommand_Enchantments from "./assets/GiveCommand_Enchantments";
 import "../../styles/GiveCommand.css";
 import "../../styles/InputJavaEdition.css";
+import GiveCommand_Lore from "./assets/GiveCommand_Lore";
 
 function GiveCommand() {
     const [item, setItem] = useState('null');
     const [selectedItem, setSelectedItem] = useState<any>(null);
     const [enchantmentValues, setEnchantmentValues] = useState<number[]>([]);
+    const [loreValues, setLoreValues] = useState<string[]>([]);
     const [username, setUsername] = useState('');
     const [material, setMaterial] = useState('');
-    const [renderedSwitch, setRenderedSwitch] = useState<JSX.Element | null>(null);
+    const [enchantementRenderedSwitch, setEnchantementRenderedSwitch] = useState<JSX.Element | null>(null);
+    const [loreRenderedSwitch, setLoreRenderedSwitch] = useState<JSX.Element | null>(null);
+    const [commandResult, setCommandResult] = useState('');
+    const [showCopyMessage, setShowCopyMessage] = useState(false);
+    const [data, setData] = useState<Item[]>([]);
 
-    const data = [
-        {
-            "nom": "Sword",
-            "identifier": "sword",
-            "materials": [
-                {
-                    "name": "Wood",
-                    "identifier": "wooden"
-                },
-                {
-                    "name": "Gold",
-                    "identifier": "gold"
-                },
-                {
-                    "name": "Diamond",
-                    "identifier": "diamond"
-                }
-            ],
-            "enchantments": [
-                {
-                    "name": "Looting",
-                    "identifier": "looting",
-                    "lvlMax": 3,
-                },
-                {
-                    "name": "Sharpness",
-                    "identifier": "sharpness",
-                    "lvlMax": 5,
-                },
-                {
-                    "name": "Fire aspect",
-                    "identifier": "fire_aspect",
-                    "lvlMax": 2,
-                }
-            ]
-        },
-        {
-            "nom": "Chestplate",
-            "identifier": "chestplate",
-            "materials": [
-                {
-                    "name": "Leather",
-                    "identifier": "leather"
-                },
-                {
-                    "name": "Gold",
-                    "identifier": "gold"
-                },
-                {
-                    "name": "Diamond",
-                    "identifier": "diamond"
-                }
-            ],
-            "enchantments": [
-                {
-                    "name": "Protection",
-                    "identifier": "protection",
-                    "lvlMax": 4,
-                },
-                {
-                    "name": "Projectile protection",
-                    "identifier": "projectile_protection",
-                    "lvlMax": 4,
-                },
-                {
-                    "name": "Throns",
-                    "identifier": "thorns",
-                    "lvlMax": 4,
-                }
-            ]
-        }
-    ]
+    interface Version {
+        _id: string;
+        version: string;
+    }
+
+    interface Enchantment {
+        _id: string;
+        nom: string;
+        identifier: string;
+        lvlMax: number;
+        version: Version[];
+    }
+
+    interface Material {
+        _id: string;
+        nom: string;
+        identifier: string;
+    }
+
+    interface Item {
+        _id: string;
+        nom: string;
+        identifier: string;
+        enchantement: Enchantment[];
+        materiaux: Material[];
+    }
+
+    useEffect(() => {
+        fetch('http://localhost:80/getItem')
+            .then(response => response.json())
+            .then((data: Item[]) => setData(data));
+    }, []);
 
     useEffect(() => {
         if (item === 'null') {
@@ -91,21 +57,28 @@ function GiveCommand() {
             setEnchantmentValues([]);
             setUsername('');
             setMaterial('null');
-            setRenderedSwitch(null);
+            setEnchantementRenderedSwitch(null);
+            setLoreRenderedSwitch(null);
         }
     }, [item]);
 
     useEffect(() => {
         if (selectedItem !== null) {
-            setRenderedSwitch(renderSwitch(item));
+            setEnchantementRenderedSwitch(enchantmentRenderSwitch(item));
+            setLoreRenderedSwitch(loreRenderSwitch(item))
         }
     }, [selectedItem, item]);
 
     useEffect(() => {
-        renderEnchantment(item, selectedItem, enchantmentValues, username, material);
-    }, [item, selectedItem, enchantmentValues, username, material]);
+        renderEnchantment(item, selectedItem, enchantmentValues, username, material, loreValues);
+    }, [item, selectedItem, enchantmentValues, username, material, loreValues]);
 
-    const renderEnchantment = (item: string, selectedItem: any, enchantmentValues: number[], username: string, material: string): void => {
+    const renderEnchantment = (item: string,
+                               selectedItem: any,
+                               enchantmentValues: number[],
+                               username: string,
+                               material: string,
+                               lorevalues: string[]): void => {
 
         let enchantements: string = "";
 
@@ -135,16 +108,16 @@ function GiveCommand() {
 
         switch (true) {
             case (material === 'null' && item === 'null'):
-                console.log(`Neither material nor item is selected.`);
+                setCommandResult(`Neither material nor item is selected.`);
                 break;
             case (material === 'null'):
-                console.log(`Material is not selected.`);
+                setCommandResult(`Material is not selected.`);
                 break;
             case (item === 'null'):
-                console.log(`Item is not selected.`);
+                setCommandResult(`Item is not selected.`);
                 break;
             default:
-                console.log(`/give ${username ? username : '@p'} ${material}_${item}${enchantements}`);
+                setCommandResult(`/give ${username ? username : '@p'} ${material}_${item}${enchantements}`);
                 break;
         }
     }
@@ -167,10 +140,24 @@ function GiveCommand() {
         setEnchantmentValues(newValues);
     }
 
-    const renderSwitch = (itemId: string) => {
+    const handleLoreValuesChange = (newValues: string[]) => {
+        setLoreValues(newValues);
+    }
+
+    const enchantmentRenderSwitch = (itemId: string) => {
         const itemData = data.find(item => item.identifier === itemId);
-        const enchantments = itemData ? itemData.enchantments : [];
-        return <GiveCommand_Enchantments enchantments={enchantments} onValuesChange={handleEnchantmentValuesChange}/>
+        const enchantement = itemData ? itemData.enchantement : [];
+        return <GiveCommand_Enchantments enchantments={enchantement} onValuesChange={handleEnchantmentValuesChange}/>
+    }
+
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(commandResult);
+        setShowCopyMessage(true);
+        setTimeout(() => setShowCopyMessage(false), 3000);
+    }
+
+    const loreRenderSwitch = (itemId: string) => {
+        return <GiveCommand_Lore onValuesChange={handleLoreValuesChange}/>
     }
 
     return (
@@ -188,7 +175,8 @@ function GiveCommand() {
 
                 <div className="input-block">
                     <label htmlFor="material" className="text-minecraft">Materiau</label>
-                    <select name="material" id="material" className="minecraft-input fixed-size" onChange={handleMaterialChange}>
+                    <select name="material" id="material" className="minecraft-input fixed-size"
+                            onChange={handleMaterialChange}>
                         <option value="null">Select a material</option>
                         {selectedItem && selectedItem.materials.map((material: any, index: number) => (
                             <option key={index} value={material.identifier}>{material.name}</option>
@@ -209,8 +197,19 @@ function GiveCommand() {
             </div>
 
             <div className="bar-container">
-                {renderedSwitch}
+                {enchantementRenderedSwitch}
             </div>
+
+            {/*<div className="bar-container">
+                {loreRenderedSwitch}
+            </div>*/}
+
+            <textarea className="command-renderer text-minecraft"
+                      value={commandResult}
+                      onClick={copyToClipboard}
+                      readOnly/>
+
+            {showCopyMessage && <p className="text-minecraft">Copied to clipboard</p>}
 
             <ButtonsJavaEdition taille="1" title="Retour" path="goback"/>
         </div>
