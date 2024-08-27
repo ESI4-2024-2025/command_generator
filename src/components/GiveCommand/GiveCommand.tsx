@@ -4,6 +4,7 @@ import GiveCommand_Enchantments from "./assets/GiveCommand_Enchantments";
 import "../../styles/GiveCommand.css";
 import "../../styles/InputJavaEdition.css";
 import GiveCommand_Lore from "./assets/GiveCommand_Lore";
+import {log} from "node:util";
 
 function GiveCommand() {
     const [item, setItem] = useState('null');
@@ -13,7 +14,6 @@ function GiveCommand() {
     const [username, setUsername] = useState('');
     const [material, setMaterial] = useState('');
     const [enchantementRenderedSwitch, setEnchantementRenderedSwitch] = useState<JSX.Element | null>(null);
-    const [loreRenderedSwitch, setLoreRenderedSwitch] = useState<JSX.Element | null>(null);
     const [commandResult, setCommandResult] = useState('');
     const [showCopyMessage, setShowCopyMessage] = useState(false);
     const [data, setData] = useState<Item[]>([]);
@@ -23,7 +23,7 @@ function GiveCommand() {
         version: string;
     }
 
-    interface Enchantment {
+    interface Enchantement {
         _id: string;
         nom: string;
         identifier: string;
@@ -31,7 +31,7 @@ function GiveCommand() {
         version: Version[];
     }
 
-    interface Material {
+    interface Materiaux {
         _id: string;
         nom: string;
         identifier: string;
@@ -41,8 +41,8 @@ function GiveCommand() {
         _id: string;
         nom: string;
         identifier: string;
-        enchantement: Enchantment[];
-        materiaux: Material[];
+        enchantement: Enchantement[];
+        materiaux: Materiaux[];
     }
 
     useEffect(() => {
@@ -58,27 +58,24 @@ function GiveCommand() {
             setUsername('');
             setMaterial('null');
             setEnchantementRenderedSwitch(null);
-            setLoreRenderedSwitch(null);
         }
     }, [item]);
 
     useEffect(() => {
         if (selectedItem !== null) {
             setEnchantementRenderedSwitch(enchantmentRenderSwitch(item));
-            setLoreRenderedSwitch(loreRenderSwitch(item))
         }
     }, [selectedItem, item]);
 
     useEffect(() => {
-        renderEnchantment(item, selectedItem, enchantmentValues, username, material, loreValues);
+        renderEnchantment(item, selectedItem, enchantmentValues, username, material);
     }, [item, selectedItem, enchantmentValues, username, material, loreValues]);
 
     const renderEnchantment = (item: string,
                                selectedItem: any,
                                enchantmentValues: number[],
                                username: string,
-                               material: string,
-                               lorevalues: string[]): void => {
+                               material: string): void => {
 
         let enchantements: string = "";
 
@@ -92,16 +89,19 @@ function GiveCommand() {
              * pour afficher dans la liste de GiveCommand_Enchantments que les enchantements
              * présents dans la version sélectionnée
              */
-            enchantmentValues.forEach((value, index) => {
+            let index = 0;
+            console.log(selectedItem);
+            enchantmentValues.forEach((value) => {
                 if(value > 0) {
-                    enchantements = enchantements + `{id:${selectedItem.enchantments[index].identifier},lvl:${value}s}`;
+                    enchantements = enchantements + `{id:${selectedItem.enchantement[index].identifier},lvl:${value.toString()}s}`;
                 }else{
                     enchantements = enchantements + "";
                 }
+                index ++;
             });
 
             if (enchantements) {
-                enchantements = enchantements.replace(/\}\{/g, '},{');
+                enchantements = enchantements.replace(/}\{/g, '},{');
                 enchantements = `{Enchantments:[${enchantements}]}`;
             }
         }
@@ -122,10 +122,15 @@ function GiveCommand() {
         }
     }
 
-    const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleSelectItemChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setItem(event.target.value);
+        console.log(data);
         const selectedItem = data.find(item => item.identifier === event.target.value);
-        setSelectedItem(selectedItem);
+        if (selectedItem) {
+            setSelectedItem(selectedItem);
+        } else {
+            setSelectedItem(null);
+        }
     }
 
     const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -140,14 +145,12 @@ function GiveCommand() {
         setEnchantmentValues(newValues);
     }
 
-    const handleLoreValuesChange = (newValues: string[]) => {
-        setLoreValues(newValues);
-    }
-
     const enchantmentRenderSwitch = (itemId: string) => {
         const itemData = data.find(item => item.identifier === itemId);
-        const enchantement = itemData ? itemData.enchantement : [];
-        return <GiveCommand_Enchantments enchantments={enchantement} onValuesChange={handleEnchantmentValuesChange}/>
+        if (!itemData || !itemData.enchantement) {
+            return null;
+        }
+        return <GiveCommand_Enchantments enchantments={itemData.enchantement} onValuesChange={handleEnchantmentValuesChange}/>
     }
 
     const copyToClipboard = () => {
@@ -156,18 +159,14 @@ function GiveCommand() {
         setTimeout(() => setShowCopyMessage(false), 3000);
     }
 
-    const loreRenderSwitch = (itemId: string) => {
-        return <GiveCommand_Lore onValuesChange={handleLoreValuesChange}/>
-    }
-
     return (
         <div className="give-command" data-testid="GiveCommand">
             <div className="main-container">
                 <div className="input-block">
                     <label htmlFor="item" className="text-minecraft">Item</label>
-                    <select className="minecraft-input fixed-size" name="item" id="item" onChange={handleSelectChange}>
+                    <select className="minecraft-input fixed-size" name="item" id="item" onChange={handleSelectItemChange}>
                         <option value="null">Select an item</option>
-                        {data.map((item, index) => (
+                        {data && data.map((item, index) => (
                             <option key={index} value={item.identifier}>{item.nom}</option>
                         ))}
                     </select>
@@ -178,8 +177,8 @@ function GiveCommand() {
                     <select name="material" id="material" className="minecraft-input fixed-size"
                             onChange={handleMaterialChange}>
                         <option value="null">Select a material</option>
-                        {selectedItem && selectedItem.materials.map((material: any, index: number) => (
-                            <option key={index} value={material.identifier}>{material.name}</option>
+                        {selectedItem && selectedItem.materiaux && selectedItem.materiaux.map((material: any, index: number) => (
+                            <option key={index} value={material.identifier}>{material.nom}</option>
                         ))}
                     </select>
                 </div>
@@ -199,10 +198,6 @@ function GiveCommand() {
             <div className="bar-container">
                 {enchantementRenderedSwitch}
             </div>
-
-            {/*<div className="bar-container">
-                {loreRenderedSwitch}
-            </div>*/}
 
             <textarea className="command-renderer text-minecraft"
                       value={commandResult}
