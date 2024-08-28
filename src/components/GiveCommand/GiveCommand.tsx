@@ -46,7 +46,7 @@ function GiveCommand() {
     }
 
     useEffect(() => {
-        fetch('http://localhost:80/getItem')
+        fetch(`${process.env.HOST}/getItem`)
             .then(response => response.json())
             .then((data: Item[]) => setData(data));
     }, []);
