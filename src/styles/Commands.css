@@ -1,18 +1,35 @@
-@font-face {
-    font-family: "minecraft";
-    src: url("../font/minecraft.otf")
+.commands-page {
+ margin:          0 auto;
+ width:           40vw;
+ display:         flex;
+ flex-direction:  column;
+ justify-content: center;
 }
 
-@font-face {
-    font-family: "minecrafter";
-    src: url("../font/Minecrafter.Alt.ttf")
+.commands-title {
+ text-align:    center;
+ margin-bottom: 1vh;
+ color:           #DDD;
+ font-size:       3rem;
+ font-family:     "Minecraft", sans-serif;
+ height:          5vh; /* Ajuster la hauteur à 10vh */
 }
 
-.commands{
-    width: 100%;
+.commands {
+ background-color: rgba(0, 0, 0, 0.4);
+ margin:           1vh 0;
+ height:           80vh; /* Ajuster la hauteur à 75vh */
 }
-.commands-buttons{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.commands-buttons {
+ height:     70vh; /* Ajuster la hauteur à 70vh */
+ overflow-y: auto;
+
+ > * {
+  margin: 3vh auto;
+ }
+}
+
+.back-button {
+ height:     5vh; /* Ajuster la hauteur à 5vh */
 }
