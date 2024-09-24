@@ -3,11 +3,6 @@
 	src:         url("../font/minecraft.otf")
 }
 
-.btn-taille-square {
-	aspect-ratio: 1/1;
-	height:       5vh;
-}
-
 .mc-button.btn-taille-square .title {
 	padding: 0;
 }
