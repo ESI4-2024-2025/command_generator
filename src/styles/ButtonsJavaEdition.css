@@ -3,14 +3,6 @@
     src: url("../font/minecraft.otf")
 }
 
-.McButtons{
-    margin: 1rem
-}
-
-.btn-taille-19{
-    width: 19vw;
-}
-
 .btn-taille-square{
     aspect-ratio:1/1;
     height: 5vh;

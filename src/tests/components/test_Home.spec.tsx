@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import Home from '../../components/Home';
+import Home from '../../components/Commands';
 
 describe('Home component', () => {
     it('renders the component correctly', () => {

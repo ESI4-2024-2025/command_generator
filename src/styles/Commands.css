@@ -1,0 +1,18 @@
+@font-face {
+    font-family: "minecraft";
+    src: url("../font/minecraft.otf")
+}
+
+@font-face {
+    font-family: "minecrafter";
+    src: url("../font/Minecrafter.Alt.ttf")
+}
+
+.commands{
+    width: 100%;
+}
+.commands-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

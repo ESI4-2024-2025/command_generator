@@ -25,10 +25,11 @@ const ButtonsJavaEdition: React.FC<McButtonsProps> = ({ taille, title, path, onC
         }
     }
 
-    const buttonClass = `mc-button full btn-taille-${taille} ${disabled ? 'disabled' : ''}`;
+    const buttonClass = `mc-button full ${disabled ? 'disabled' : ''}`;
+    const buttonStyle = { width: `${taille}vw` };
 
     return (
-        <div className="McButtons" data-testid="ButtonsJavaEdition" onClick={handleClick}>
+        <div className="McButtons" data-testid="ButtonsJavaEdition" onClick={handleClick} style={buttonStyle}>
             <div className={buttonClass}>
                 <div className="title">{title}</div>
             </div>

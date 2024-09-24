@@ -1,12 +1,12 @@
 import ButtonsJavaEdition from "./utilities/ButtonsJavaEdition";
-import "../styles/Home.css"
+import "../styles/Commands.css"
 
-function Home() {
+function Commands() {
 
     return (
-        <div className="home" data-testid="Home">
+        <div className="commands" data-testid="Home">
 
-            <div className="home-buttons">
+            <div className="commands-buttons">
                 <ButtonsJavaEdition title="GIVE"
                     taille="19"
                     path="give" />
@@ -16,4 +16,4 @@ function Home() {
 
 }
 
-export default Home
+export default Commands

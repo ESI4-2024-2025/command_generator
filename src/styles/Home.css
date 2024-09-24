@@ -1,18 +1,45 @@
-@font-face {
-    font-family: "minecraft";
-    src: url("../font/minecraft.otf")
+.home {
+	padding-top:      10vh;
+	display:          block;
+	margin:           0 auto;
+	width:            40vw;
+	height:           90vh;
+	background-color: rgba(0, 0, 0, 0.2);
 }
 
-@font-face {
-    font-family: "minecrafter";
-    src: url("../font/Minecrafter.Alt.ttf")
+.home-logo {
+	margin-bottom: 20px;
 }
 
-.home{
-    width: 100%;
+.home-logo img {
+	max-width: 100%;
+	height:    auto;
 }
-.home-buttons{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.home-buttons {
+	margin: 1vw;
+
+	> * {
+		margin-bottom: 1vh;
+	}
+}
+
+.home-buttons-dual {
+	display: flex;
+
+	> *:first-child {
+		margin-right: 0.5vw;
+	}
+}
+
+.home-page.html-bg-1 {
+	background: url("../img/Home1.png");
+}
+
+.home-page.html-bg-2 {
+	background: url("../img/Home2.png");
+}
+
+.home-page.html-bg-3 {
+	background: url("../img/Home3.png");
 }

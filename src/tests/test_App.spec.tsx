@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
-import Home from '../components/Home';
+import Home from '../components/Commands';
 import GiveCommand from '../components/GiveCommand/GiveCommand';
 
 describe('App component', () => {
