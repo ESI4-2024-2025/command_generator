@@ -1,0 +1,48 @@
+.account-creation-or-connexion {
+	align-items:    center;
+	display:        flex;
+	flex-direction: column;
+}
+
+.tabs {
+	align-items: flex-end;
+	display:     flex;
+	height:      8vh;
+	margin-top:  1vh;
+	width:       40vw;
+}
+
+.tab {
+	background-color: rgba(0, 0, 0, 0.6);
+	border:           none;
+	color:            #FFF;
+	cursor:           pointer;
+	font-family:      "Minecraft", sans-serif;
+	font-size:        2rem;
+	height:           6vh;
+	width:            20vw;
+}
+
+.tab.active {
+	border-bottom: none;
+	border-left:   4px solid white;
+	border-right:  4px solid white;
+	border-top:    4px solid white;
+	font-weight:   bold;
+	height:        7vh;
+	width:         20vw;
+}
+
+.tab-content {
+	background-color: rgba(0, 0, 0, 0.6);
+	height:           89vh;
+	text-align:       center;
+	width:            40vw;
+}
+
+.back-button-container {
+	left:     0;
+	margin:   10px;
+	position: absolute;
+	top:      0;
+}
