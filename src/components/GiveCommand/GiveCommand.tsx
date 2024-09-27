@@ -126,14 +126,15 @@ function GiveCommand() {
 	const handleSelectItemChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		setItem(event.target.value);
 		setIsMaterialDisabled(false); // Reset isMaterialDisabled when item changes
-		console.log(data);
 		const selectedItem = data.find(item => item.identifier === event.target.value);
 		if (selectedItem) {
 			setSelectedItem(selectedItem);
-			setEnchantmentValues(new Array(selectedItem.enchantement.length).fill(0)); // Reset enchantment values
+			setEnchantmentValues(new Array(selectedItem.enchantement.length).fill(0));
+			setMaterial("null"); // Reset material to "null" when item changes
 		} else {
 			setSelectedItem(null);
 			setEnchantmentValues([]); // Reset enchantment values
+			setMaterial("null"); // Reset material to "null" when no item is selected
 		}
 	};
 
@@ -185,7 +186,7 @@ function GiveCommand() {
 				<div className="input-block">
 					<label htmlFor="material" className="text-minecraft">Material</label>
 					<select name="material" id="material" className="minecraft-input fixed-size"
-							onChange={handleMaterialChange} disabled={isMaterialDisabled}>
+							value={material} onChange={handleMaterialChange} disabled={isMaterialDisabled}>
 						<option value="null">{isMaterialDisabled ? "not needed" : "Select a material"}</option>
 						{selectedItem && selectedItem.materiaux && selectedItem.materiaux.map((material: any, index: number) => (
 							<option key={index} value={material.identifier}>{material.nom}</option>
