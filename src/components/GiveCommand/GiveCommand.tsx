@@ -3,8 +3,6 @@ import ButtonsJavaEdition from "../utilities/ButtonsJavaEdition";
 import GiveCommand_Enchantments from "./assets/GiveCommand_Enchantments";
 import "../../styles/GiveCommand.css";
 import "../../styles/InputJavaEdition.css";
-import GiveCommand_Lore from "./assets/GiveCommand_Lore";
-import {log} from "node:util";
 
 function GiveCommand() {
 	const [item, setItem] = useState("null");
@@ -16,6 +14,7 @@ function GiveCommand() {
 	const [commandResult, setCommandResult] = useState("");
 	const [showCopyMessage, setShowCopyMessage] = useState(false);
 	const [data, setData] = useState<Item[]>([]);
+	const [isMaterialDisabled, setIsMaterialDisabled] = useState(false);
 
 	interface Version {
 		_id: string;
@@ -47,7 +46,10 @@ function GiveCommand() {
 	useEffect(() => {
 		fetch(`${process.env.REACT_APP_HOST_BACK}/getItem`)
 			.then(response => response.json())
-			.then((data: Item[]) => setData(data));
+			.then((data: Item[]) => {
+				console.log(data); // Log the response data
+				setData(data);
+			});
 	}, []);
 
 	useEffect(() => {
@@ -57,12 +59,19 @@ function GiveCommand() {
 			setUsername("");
 			setMaterial("null");
 			setEnchantementRenderedSwitch(null);
+			setIsMaterialDisabled(false);
 		}
 	}, [item]);
 
 	useEffect(() => {
 		if (selectedItem !== null) {
 			setEnchantementRenderedSwitch(enchantmentRenderSwitch(item));
+			if (selectedItem.materiaux.length === 1) {
+				setMaterial("not needed");
+				setIsMaterialDisabled(true);
+			} else {
+				setIsMaterialDisabled(false);
+			}
 		}
 	}, [selectedItem, item]);
 
@@ -79,15 +88,6 @@ function GiveCommand() {
 		let enchantements: string = "";
 
 		if (enchantmentValues.length > 0) {
-			/**
-			 * pour l'instant ça fonctionne pour les versions 1.14 a 1.20
-			 * pour la version 1.21 il faudra changer la façon dont les enchantements sont ajoutés
-			 * pour les versions anterieures a 1.14 il faudra faire des tests
-			 *
-			 * il faudrait aussi vérifier la version d'appaication des l'enchantements
-			 * pour afficher dans la liste de GiveCommand_Enchantments que les enchantements
-			 * présents dans la version sélectionnée
-			 */
 			let index = 0;
 			console.log(selectedItem);
 			enchantmentValues.forEach((value) => {
@@ -116,13 +116,16 @@ function GiveCommand() {
 				setCommandResult(`Item is not selected.`);
 				break;
 			default:
-				setCommandResult(`/give ${username ? username : "@p"} ${material}_${item}${enchantements}`);
+				setCommandResult(
+					`/give ${username ? username : "@p"} ${isMaterialDisabled ? item : `${material}_${item}`}${enchantements}`
+				);
 				break;
 		}
 	};
 
 	const handleSelectItemChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		setItem(event.target.value);
+		setIsMaterialDisabled(false); // Reset isMaterialDisabled when item changes
 		console.log(data);
 		const selectedItem = data.find(item => item.identifier === event.target.value);
 		if (selectedItem) {
@@ -139,7 +142,9 @@ function GiveCommand() {
 	};
 
 	const handleMaterialChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-		setMaterial(event.target.value);
+		if (!isMaterialDisabled) {
+			setMaterial(event.target.value);
+		}
 	};
 
 	const handleEnchantmentValuesChange = (newValues: number[]) => {
@@ -151,7 +156,8 @@ function GiveCommand() {
 		if (!itemData || !itemData.enchantement) {
 			return null;
 		}
-		return <GiveCommand_Enchantments enchantments={itemData.enchantement} onValuesChange={handleEnchantmentValuesChange} resetValues={true} />;
+		return <GiveCommand_Enchantments enchantments={itemData.enchantement}
+										 onValuesChange={handleEnchantmentValuesChange} resetValues={true}/>;
 	};
 
 	const copyToClipboard = () => {
@@ -177,10 +183,10 @@ function GiveCommand() {
 				</div>
 
 				<div className="input-block">
-					<label htmlFor="material" className="text-minecraft">Materiau</label>
+					<label htmlFor="material" className="text-minecraft">Material</label>
 					<select name="material" id="material" className="minecraft-input fixed-size"
-							onChange={handleMaterialChange}>
-						<option value="null">Select a material</option>
+							onChange={handleMaterialChange} disabled={isMaterialDisabled}>
+						<option value="null">{isMaterialDisabled ? "not needed" : "Select a material"}</option>
 						{selectedItem && selectedItem.materiaux && selectedItem.materiaux.map((material: any, index: number) => (
 							<option key={index} value={material.identifier}>{material.nom}</option>
 						))}
