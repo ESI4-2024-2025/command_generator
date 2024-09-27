@@ -27,7 +27,7 @@ function Home() {
 			</div>
 			<div className="home-buttons">
 				<div>
-					<ButtonsJavaEdition title="Commands" taille="38" path="commands"/>
+					<ButtonsJavaEdition title="Commandes" taille="38" path="commands"/>
 				</div>
 				<div className="home-buttons-dual">
 					<ButtonsJavaEdition title="Profil" taille="19" path="account"/>

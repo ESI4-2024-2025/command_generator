@@ -176,7 +176,7 @@ function GiveCommand() {
 				</div>
 
 				<div className="input-block">
-					<label htmlFor="material" className="text-minecraft">Materiau</label>
+					<label htmlFor="material" className="text-minecraft">Material</label>
 					<select name="material" id="material" className="minecraft-input fixed-size"
 							onChange={handleMaterialChange}>
 						<option value="null">Select a material</option>
