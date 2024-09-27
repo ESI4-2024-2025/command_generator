@@ -10,7 +10,6 @@ function GiveCommand() {
 	const [item, setItem] = useState("null");
 	const [selectedItem, setSelectedItem] = useState<any>(null);
 	const [enchantmentValues, setEnchantmentValues] = useState<number[]>([]);
-	const [loreValues, setLoreValues] = useState<string[]>([]);
 	const [username, setUsername] = useState("");
 	const [material, setMaterial] = useState("");
 	const [enchantementRenderedSwitch, setEnchantementRenderedSwitch] = useState<JSX.Element | null>(null);
@@ -69,7 +68,7 @@ function GiveCommand() {
 
 	useEffect(() => {
 		renderEnchantment(item, selectedItem, enchantmentValues, username, material);
-	}, [item, selectedItem, enchantmentValues, username, material, loreValues]);
+	}, [item, selectedItem, enchantmentValues, username, material]);
 
 	const renderEnchantment = (item: string,
 							   selectedItem: any,
@@ -128,8 +127,10 @@ function GiveCommand() {
 		const selectedItem = data.find(item => item.identifier === event.target.value);
 		if (selectedItem) {
 			setSelectedItem(selectedItem);
+			setEnchantmentValues(new Array(selectedItem.enchantement.length).fill(0)); // Reset enchantment values
 		} else {
 			setSelectedItem(null);
+			setEnchantmentValues([]); // Reset enchantment values
 		}
 	};
 
@@ -150,7 +151,7 @@ function GiveCommand() {
 		if (!itemData || !itemData.enchantement) {
 			return null;
 		}
-		return <GiveCommand_Enchantments enchantments={itemData.enchantement} onValuesChange={handleEnchantmentValuesChange}/>;
+		return <GiveCommand_Enchantments enchantments={itemData.enchantement} onValuesChange={handleEnchantmentValuesChange} resetValues={true} />;
 	};
 
 	const copyToClipboard = () => {
@@ -176,7 +177,7 @@ function GiveCommand() {
 				</div>
 
 				<div className="input-block">
-					<label htmlFor="material" className="text-minecraft">Material</label>
+					<label htmlFor="material" className="text-minecraft">Materiau</label>
 					<select name="material" id="material" className="minecraft-input fixed-size"
 							onChange={handleMaterialChange}>
 						<option value="null">Select a material</option>
