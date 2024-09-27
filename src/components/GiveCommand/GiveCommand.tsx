@@ -209,7 +209,7 @@ function GiveCommand() {
 					  onClick={copyToClipboard}
 					  readOnly/>
 
-			{showCopyMessage && <div className="notification show">Copié dans le presse papier</div>}
+			{showCopyMessage && <div className="notification show">Copie dans le presse papier</div>}
 		</div>
 	);
 }

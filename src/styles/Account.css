@@ -1,0 +1,38 @@
+.accounts-page {
+	display:         flex;
+	flex-direction:  column;
+	justify-content: center;
+	margin:          0 auto;
+	width:           40vw;
+}
+
+.accounts-title {
+	color:         #DDD;
+	font-family:   "Minecraft", sans-serif;
+	font-size:     3rem;
+	height:        5vh;
+	margin-bottom: 1vh;
+	text-align:    center;
+}
+
+.account {
+	background-color: rgba(0, 0, 0, 0.4);
+	height:           80vh;
+	margin:           1vh 0;
+	display:          flex;
+	flex-direction:   column;
+	justify-content:  center;
+	align-items:      center;
+}
+
+.account-information {
+	display:        flex;
+	flex-direction: column;
+	align-items:    center;
+}
+
+.account-buttons {
+	height:  5vh;
+	display: flex;
+	gap: 2vw;
+}
