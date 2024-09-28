@@ -3,26 +3,30 @@ import axios from "axios";
 import "../../styles/InputJavaEdition.css";
 import "../../styles/Connexion.css";
 import ButtonsJavaEdition from "../utilities/ButtonsJavaEdition";
+import Notification from "../utilities/Notification";
 import {useNavigate} from "react-router-dom";
 
 function Connexion() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [error, setError] = useState("");
+	const [notificationMessage, setNotificationMessage] = useState<string | undefined>(undefined);
+	const [notificationType, setNotificationType] = useState<string | undefined>(undefined);
 	const navigate = useNavigate();
 
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
-		setError("");
 		try {
-			const response = await axios.post(`${process.env.REACT_APP_HOST_BACK}/users/login`, { email, password });
-			if (response.status === 200) {
-				localStorage.setItem("accessToken", response.data.accessToken);
-				navigate("/account");
-			}
+			const response = await axios.post(`${process.env.REACT_APP_HOST_BACK}/users/login`, {email, password});
+			localStorage.setItem("accessToken", response.data.accessToken);
+			navigate("/account");
 		} catch (err) {
 			console.log(err);
-			setError("Erreur de connexion. Veuillez verifier vos informations.");
+			setNotificationMessage(undefined); // Reset notification message
+			setNotificationType(undefined); // Reset notification type
+			setTimeout(() => {
+				setNotificationMessage("Erreur de connexion. Veuillez verifier vos informations.");
+				setNotificationType("error");
+			}, 0); // Set new notification message and type
 		}
 	};
 
@@ -35,7 +39,6 @@ function Connexion() {
 
 	return (
 		<div className="connexion">
-			{error && <p>{error}</p>}
 			<form onSubmit={handleSubmit}>
 				<div className="connexion-input-block">
 					<div className="connexion-input-wrapper">
@@ -65,6 +68,7 @@ function Connexion() {
 					<ButtonsJavaEdition taille="20" title="Se connecter"/>
 				</div>
 			</form>
+			{notificationMessage && <Notification message={notificationMessage} type={notificationType}/>}
 		</div>
 	);
 }

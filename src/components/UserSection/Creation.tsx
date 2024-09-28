@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import axios from "axios";
 import "../../styles/Creation.css";
 import ButtonsJavaEdition from "../utilities/ButtonsJavaEdition";
+import Notification from "../utilities/Notification";
 import {useNavigate} from "react-router-dom";
 
 function Creation() {
@@ -9,7 +10,8 @@ function Creation() {
 	const [email, setEmail] = useState("");
 	const [phone, setPhone] = useState("");
 	const [password, setPassword] = useState("");
-	const [error, setError] = useState("");
+	const [notificationMessage, setNotificationMessage] = useState<string | undefined>(undefined);
+	const [notificationType, setNotificationType] = useState<string | undefined>(undefined);
 	const navigate = useNavigate();
 
 	const handleSubmit = async (event: React.FormEvent) => {
@@ -26,7 +28,12 @@ function Creation() {
 				navigate("/account");
 			}
 		} catch (err) {
-			setError("Erreur de création de compte. Veuillez vérifier vos informations.");
+			setNotificationMessage(undefined); // Reset notification message
+			setNotificationType(undefined); // Reset notification type
+			setTimeout(() => {
+				setNotificationMessage("Erreur de création de compte. Veuillez vérifier vos informations.");
+				setNotificationType("error");
+			}, 0); // Set new notification message and type
 		}
 	};
 
@@ -39,7 +46,6 @@ function Creation() {
 
 	return (
 		<div className="creation">
-			{error && <p>{error}</p>}
 			<form onSubmit={handleSubmit}>
 				<div className="creation-input-block">
 					<div className="creation-input-wrapper">
@@ -93,6 +99,7 @@ function Creation() {
 					<ButtonsJavaEdition taille="20" title="Creer un compte"/>
 				</div>
 			</form>
+			{notificationMessage && <Notification message={notificationMessage} type={notificationType}/>}
 		</div>
 	);
 }
