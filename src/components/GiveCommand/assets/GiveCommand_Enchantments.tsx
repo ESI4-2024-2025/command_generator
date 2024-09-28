@@ -61,7 +61,7 @@ const GiveCommand_Enchantments: React.FC<GiveCommand_EnchantmentsProps> = ({
 					<label htmlFor={`input${index}`} className="text-minecraft">{enchantment.nom}</label>
 					<ButtonsJavaEdition taille="square" title="-" onClick={() => minus(index)}
 										disabled={values[index] === 0}/>
-					<input className="minecraft-input" id={`input${index}`} type="number" min="0"
+					<input className="minecraft-input enchantement-value-input" id={`input${index}`} type="text" min="0"
 						   max={enchantment.lvlMax} value={values[index]} disabled/>
 					<ButtonsJavaEdition taille="square" title="+" onClick={() => plus(index, enchantment.lvlMax)}
 										disabled={values[index] === enchantment.lvlMax}/>
