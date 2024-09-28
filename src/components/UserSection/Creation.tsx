@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import "../../styles/Creation.css";
 import ButtonsJavaEdition from "../utilities/ButtonsJavaEdition";
@@ -23,11 +23,10 @@ function Creation() {
 				phone,
 				password
 			});
-			if (response.status === 200) {
-				localStorage.setItem("accessToken", response.data.accessToken);
-				navigate("/account");
-			}
-		} catch (err) {
+			localStorage.setItem("accessToken", response.data.accessToken);
+			navigate("/account");
+		} catch
+			(err) {
 			setNotificationMessage(undefined); // Reset notification message
 			setNotificationType(undefined); // Reset notification type
 			setTimeout(() => {
@@ -37,12 +36,21 @@ function Creation() {
 		}
 	};
 
-	const handleDivClick = () => {
-		const form = document.querySelector("form");
-		if (form) {
-			form.dispatchEvent(new Event("submit", {cancelable: true, bubbles: true}));
-		}
-	};
+	useEffect(() => {
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.key === "Enter") {
+				const form = document.querySelector("form");
+				if (form) {
+					form.dispatchEvent(new Event("submit", {cancelable: true, bubbles: true}));
+				}
+			}
+		};
+
+		document.addEventListener("keydown", handleKeyDown);
+		return () => {
+			document.removeEventListener("keydown", handleKeyDown);
+		};
+	}, []);
 
 	return (
 		<div className="creation">
@@ -95,7 +103,11 @@ function Creation() {
 						/>
 					</div>
 				</div>
-				<div className="creation-button" onClick={handleDivClick}>
+				<div className="creation-button"
+					 onClick={() => document.querySelector("form")?.dispatchEvent(new Event("submit", {
+						 cancelable: true,
+						 bubbles: true
+					 }))}>
 					<ButtonsJavaEdition taille="20" title="Creer un compte"/>
 				</div>
 			</form>

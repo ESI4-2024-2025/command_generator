@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import "../../styles/InputJavaEdition.css";
 import "../../styles/Connexion.css";
@@ -36,6 +36,22 @@ function Connexion() {
 			form.dispatchEvent(new Event("submit", {cancelable: true, bubbles: true}));
 		}
 	};
+
+	useEffect(() => {
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.key === "Enter") {
+				const form = document.querySelector("form");
+				if (form) {
+					form.dispatchEvent(new Event("submit", {cancelable: true, bubbles: true}));
+				}
+			}
+		};
+
+		document.addEventListener("keydown", handleKeyDown);
+		return () => {
+			document.removeEventListener("keydown", handleKeyDown);
+		};
+	}, []);
 
 	return (
 		<div className="connexion">
