@@ -1,6 +1,8 @@
+// src/components/GiveCommand/GiveCommand.tsx
 import React, {useEffect, useState} from "react";
 import ButtonsJavaEdition from "../utilities/ButtonsJavaEdition";
 import GiveCommand_Enchantments from "./assets/GiveCommand_Enchantments";
+import Notification from "../utilities/Notification";
 import "../../styles/GiveCommand.css";
 import "../../styles/InputJavaEdition.css";
 
@@ -12,9 +14,9 @@ function GiveCommand() {
 	const [material, setMaterial] = useState("");
 	const [enchantementRenderedSwitch, setEnchantementRenderedSwitch] = useState<JSX.Element | null>(null);
 	const [commandResult, setCommandResult] = useState("");
-	const [showCopyMessage, setShowCopyMessage] = useState(false);
 	const [data, setData] = useState<Item[]>([]);
 	const [isMaterialDisabled, setIsMaterialDisabled] = useState(false);
+	const [notificationMessage, setNotificationMessage] = useState<string | null>(null);
 
 	interface Version {
 		_id: string;
@@ -163,8 +165,8 @@ function GiveCommand() {
 
 	const copyToClipboard = () => {
 		navigator.clipboard.writeText(commandResult);
-		setShowCopyMessage(true);
-		setTimeout(() => setShowCopyMessage(false), 3000);
+		setNotificationMessage("Copie dans le presse papier");
+		setTimeout(() => setNotificationMessage(null), 3000);
 	};
 
 	return (
@@ -175,7 +177,8 @@ function GiveCommand() {
 			<div className="main-container">
 				<div className="input-block">
 					<label htmlFor="item" className="text-minecraft">Item</label>
-					<select className="minecraft-input fixed-size" name="item" id="item" onChange={handleSelectItemChange}>
+					<select className="minecraft-input fixed-size" name="item" id="item"
+							onChange={handleSelectItemChange}>
 						<option value="null">Select an item</option>
 						{data && data.map((item, index) => (
 							<option key={index} value={item.identifier}>{item.nom}</option>
@@ -217,7 +220,7 @@ function GiveCommand() {
 					  onClick={copyToClipboard}
 					  readOnly/>
 
-			{showCopyMessage && <div className="notification show">Copie dans le presse papier</div>}
+			{notificationMessage && <Notification message={notificationMessage} type="success"/>}
 		</div>
 	);
 }

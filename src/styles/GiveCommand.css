@@ -1,34 +1,34 @@
 .text-minecraft {
+	color:       white;
 	font-family: 'Minecraft';
 	font-size:   2em;
-	color:       white;
 }
 
 .bar-container {
-	border-top:    1px solid white;
 	border-bottom: 1px solid white;
-	padding:       10px 0;
+	border-top:    1px solid white;
 	margin:        10px 0;
+	padding:       10px 0;
 }
 
 .input-block {
+	align-items:     center;
 	display:         flex;
 	flex-direction:  row;
-	align-items:     center;
 	justify-content: space-between;
 	margin-bottom:   20px;
 }
 
 .main-container {
-	padding-top:     2vh;
 	display:        flex;
 	flex-direction: column;
+	padding-top:    2vh;
 }
 
 .input-block label {
 	flex:          0.5;
-	text-align:    left;
 	padding-right: 10px;
+	text-align:    left;
 }
 
 .input-block button, .input-block input, .input-block select {
@@ -40,12 +40,12 @@
 }
 
 .command-renderer {
-	margin-top: 10px;
-	border:     3px solid white;
 	background: black;
-	width:      50vw;
+	border:     3px solid white;
 	height:     15vh;
+	margin-top: 10px;
 	resize:     none;
+	width:      50vw;
 }
 
 .enchantment-container {
@@ -54,26 +54,8 @@
 }
 
 .back-button-container {
-	position: absolute;
-	top:      1vh;
 	left:     1vw;
 	margin:   10px;
-}
-
-.notification {
-	position: fixed;
-	top: 2vh;
-	right: 1vw;
-	background-color: seagreen;
-	color: whitesmoke;
-	padding: 2rem 3rem;
-	border-radius: 5px;
-	z-index: 1000;
-	opacity: 0;
-	font-size: 2rem;
-	font-family: "Minecraft", sans-serif;
-}
-
-.notification.show {
-	opacity: 1;
+	position: absolute;
+	top:      1vh;
 }

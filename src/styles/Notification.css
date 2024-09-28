@@ -1,0 +1,28 @@
+.notification {
+	background-color: #333;
+	border-radius:    5px;
+	box-sizing:       border-box;
+	color:            whitesmoke;
+	font-family:      "Minecraft", sans-serif;
+	font-size:        2rem;
+	max-width:        28vw;
+	opacity:          0;
+	padding:          3vh 2vw;
+	position:         fixed;
+	right:            1vw;
+	top:              2vh;
+	transition:       opacity 0.5s ease-in-out;
+	z-index:          1000;
+}
+
+.notification.show {
+	opacity: 1;
+}
+
+.notification-success {
+	background-color: seagreen;
+}
+
+.notification-error {
+	background-color: red;
+}
