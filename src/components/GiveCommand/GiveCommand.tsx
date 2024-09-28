@@ -141,7 +141,11 @@ function GiveCommand() {
 	};
 
 	const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setUsername(event.target.value);
+		const value = event.target.value;
+		const regex = /^[a-zA-Z0-9_]*$/;
+		if (regex.test(value) && value.length <= 16) {
+			setUsername(value);
+		}
 	};
 
 	const handleMaterialChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -205,6 +209,9 @@ function GiveCommand() {
 						className="minecraft-input fixed-width"
 						value={username}
 						onChange={handleUsernameChange}
+						maxLength={16}
+						pattern="[a-zA-Z0-9_]*"
+						title="Username can contain up to 16 characters, including letters, numbers, and underscores."
 					/>
 				</div>
 			</div>
