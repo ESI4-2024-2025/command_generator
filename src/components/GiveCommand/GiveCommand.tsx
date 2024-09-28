@@ -177,7 +177,7 @@ function GiveCommand() {
 			<div className="main-container">
 				<div className="input-block">
 					<label htmlFor="item" className="text-minecraft">Item</label>
-					<select className="minecraft-input fixed-size" name="item" id="item"
+					<select className="minecraft-input fixed-width" name="item" id="item"
 							onChange={handleSelectItemChange}>
 						<option value="null">Select an item</option>
 						{data && data.map((item, index) => (
@@ -188,7 +188,7 @@ function GiveCommand() {
 
 				<div className="input-block">
 					<label htmlFor="material" className="text-minecraft">Material</label>
-					<select name="material" id="material" className="minecraft-input fixed-size"
+					<select name="material" id="material" className="minecraft-input fixed-width"
 							value={material} onChange={handleMaterialChange} disabled={isMaterialDisabled}>
 						<option value="null">{isMaterialDisabled ? "not needed" : "Select a material"}</option>
 						{selectedItem && selectedItem.materiaux && selectedItem.materiaux.map((material: any, index: number) => (
@@ -202,7 +202,7 @@ function GiveCommand() {
 					<input
 						type="text"
 						id="username"
-						className="minecraft-input fixed-size"
+						className="minecraft-input fixed-width"
 						value={username}
 						onChange={handleUsernameChange}
 					/>

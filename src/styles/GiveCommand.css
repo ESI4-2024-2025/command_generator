@@ -60,3 +60,10 @@
 	position: absolute;
 	top:      1vh;
 }
+
+.fixed-width {
+	box-sizing: border-box;
+	height:     4rem;
+	margin:     0;
+	min-width: 20rem;
+}
