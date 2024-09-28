@@ -1,37 +1,41 @@
 .creation {
-	color:           #FFF;
-	font-family:     "Minecraft", sans-serif;
-	display:         flex;
-	justify-content: center;
 	align-items:     center;
+	color:           #FFF;
+	display:         flex;
+	font-family:     "Minecraft", sans-serif;
 	height:          89vh;
-	width:           40vw;
+	justify-content: center;
 	margin-left:     -.5vw;
+	width:           40vw;
 }
 
 .creation-label {
-	font-size:    2rem;
 	color:        #FFF;
+	flex-shrink:  0;
 	font-family:  "Minecraft", sans-serif;
+	font-size:    2rem;
 	margin-right: 1rem;
 }
 
 .creation-input {
 	color:       #FFF;
+	flex-grow:   1;
 	font-family: "Minecraft", sans-serif;
 	width:       100%;
 }
 
 .creation-input-block {
-	margin-bottom:   3vh;
 	display:         flex;
 	justify-content: center;
+	margin-bottom:   1vh;
 	width:           100%;
 }
 
 .creation-input-wrapper {
+	align-items:     center;
 	display:         flex;
 	justify-content: center;
+	margin-bottom:   1rem;
 	width:           40vw;
 }
 
