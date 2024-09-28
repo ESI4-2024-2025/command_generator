@@ -42,6 +42,7 @@
 .command-renderer {
 	background: black;
 	border:     3px solid white;
+	cursor:     pointer;
 	height:     15vh;
 	margin-top: 10px;
 	resize:     none;
