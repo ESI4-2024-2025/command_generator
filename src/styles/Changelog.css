@@ -1,0 +1,56 @@
+.changelog-page {
+	display:         flex;
+	flex-direction:  column;
+	justify-content: center;
+	margin:          0 auto;
+	width:           70vw;
+}
+
+.changelog-title {
+	color:         #DDD;
+	font-family:   "Minecraft", sans-serif;
+	font-size:     3rem;
+	height:        5vh;
+	margin-bottom: 1vh;
+	text-align:    center;
+}
+
+.changelog {
+	background-color: rgba(0, 0, 0, 0.4);
+	color:            whitesmoke;
+	font-family:      "Minecraft", sans-serif;
+	font-size:        1.5rem;
+	height:           80vh;
+	margin:           1vh 0;
+	overflow-y:       auto;
+	padding:          0 1rem;
+}
+
+.changelog h1 {
+	text-align: center;
+}
+
+.changelog-buttons {
+	height:     70vh;
+	overflow-y: auto;
+
+	> * {
+		margin: 3vh auto;
+	}
+}
+
+.back-button {
+	height: 5vh;
+}
+
+.collapsible {
+	cursor: pointer;
+}
+
+.collapsible + p {
+	display: none;
+}
+
+.collapsible + p.collapsed {
+	display: block;
+}

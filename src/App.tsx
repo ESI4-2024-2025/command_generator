@@ -6,6 +6,7 @@ import GiveCommand from "./components/GiveCommand/GiveCommand";
 import Home from "./Home";
 import AccountCreationOrConnexion from "./components/UserSection/AccountCreationOrConnexion";
 import Account from "./components/UserSection/Account";
+import Changelog from "./components/Changelog/Changelog";
 
 function App() {
 	return (
@@ -18,6 +19,7 @@ function App() {
 						<Route path="/commands/give" element={<GiveCommand/>}/>
 						<Route path="/account" element={<Account/>}/>
 						<Route path="/account/creationorconnexion" element={<AccountCreationOrConnexion/>}/>
+						<Route path="/changelog" element={<Changelog/>}/>
 					</Routes>
 				</BrowserRouter>
 			</div>

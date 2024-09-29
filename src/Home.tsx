@@ -31,7 +31,7 @@ function Home() {
 				</div>
 				<div className="home-buttons-dual">
 					<ButtonsJavaEdition title="Profil" taille="19" path="account"/>
-					<ButtonsJavaEdition title="WIP" taille="19" path="commands"/>
+					<ButtonsJavaEdition title="Changelog" taille="19" path="changelog"/>
 				</div>
 			</div>
 		</div>
