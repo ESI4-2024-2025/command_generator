@@ -5,7 +5,14 @@ import ReactMarkdown from "react-markdown";
 
 function Changelog() {
 
-	const markdownContent = `# V2.2
+	const markdownContent = `# V2.3
+*01-10-2024*
+
+**Global :**
+
+- déploiements automatiques avec les workflows github (lorsqu'on push un tag)
+
+# V2.2
 *01-10-2024*
 
 **Global :**
