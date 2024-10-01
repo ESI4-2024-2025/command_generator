@@ -1,9 +1,17 @@
 # V2.2
 
+**Global :**
+
+- ajout d'une notification orange "info" pour les informations/semi erreurs
+
 **/give :**
 
 - suppression de l'option "Select an item" dans le select des items, si jamais cette valeur a téte modifiée
 - impossible de copier une commande s'il y a un message d'erreur du type "Material is not selected." et affichage d'une notification disant "impossible de copier une commande vide" si on essaie de copier
+
+**Connexion et Creation :**
+
+- retrait du `é` problématique dans le message "vérifier vos informations"
 
 # V2.1 (29-09-2024)
 
