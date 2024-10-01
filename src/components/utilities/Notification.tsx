@@ -24,7 +24,16 @@ const Notification: React.FC<NotificationProps> = ({message, duration = 3000, ty
 
 	return (
 		<div
-			className={`notification ${visible ? "show" : ""} ${type === "error" ? "notification-error" : type === "success" ? "notification-success" : ""}`}>
+			className={`notification ${visible ? "show" : ""} ${
+				type === "error"
+					? "notification-error"
+					: type === "success"
+						? "notification-success"
+						: type === "info"
+							? "notification-info"
+							: ""
+			}`}
+		>
 			{message}
 		</div>
 	);

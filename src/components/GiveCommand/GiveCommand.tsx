@@ -16,8 +16,9 @@ function GiveCommand() {
 	const [commandResult, setCommandResult] = useState("");
 	const [data, setData] = useState<Item[]>([]);
 	const [isMaterialDisabled, setIsMaterialDisabled] = useState(false);
-	const [notificationMessage, setNotificationMessage] = useState<string | null>(null);
+	const [notificationMessage, setNotificationMessage] = useState<{ text: string, type: string } | null>(null);
 	const [showDefaultOption, setShowDefaultOption] = useState(true);
+	const [isCopyDisabled, setIsCopyDisabled] = useState(false);
 
 	interface Version {
 		_id: string;
@@ -111,17 +112,21 @@ function GiveCommand() {
 		switch (true) {
 			case (material === "null" && item === "null"):
 				setCommandResult(`Neither material nor item is selected.`);
+				setIsCopyDisabled(true);
 				break;
 			case (material === "null"):
 				setCommandResult(`Material is not selected.`);
+				setIsCopyDisabled(true);
 				break;
 			case (item === "null"):
 				setCommandResult(`Item is not selected.`);
+				setIsCopyDisabled(true);
 				break;
 			default:
 				setCommandResult(
 					`/give ${username ? username : "@p"} ${isMaterialDisabled ? item : `${material}_${item}`}${enchantements}`
 				);
+				setIsCopyDisabled(false);
 				break;
 		}
 	};
@@ -170,9 +175,14 @@ function GiveCommand() {
 	};
 
 	const copyToClipboard = () => {
-		navigator.clipboard.writeText(commandResult);
-		setNotificationMessage("Copie dans le presse papier");
-		setTimeout(() => setNotificationMessage(null), 3000);
+		if (isCopyDisabled) {
+			setNotificationMessage({ text: "impossible de copier une commande vide", type: "info" });
+			setTimeout(() => setNotificationMessage(null), 3000);
+		} else {
+			navigator.clipboard.writeText(commandResult);
+			setNotificationMessage({ text: "Copie dans le presse papier", type: "success" });
+			setTimeout(() => setNotificationMessage(null), 3000);
+		}
 	};
 
 	return (
@@ -229,7 +239,7 @@ function GiveCommand() {
 					  onClick={copyToClipboard}
 					  readOnly/>
 
-			{notificationMessage && <Notification message={notificationMessage} type="success"/>}
+			{notificationMessage && <Notification message={notificationMessage.text} type={notificationMessage.type}/>}
 		</div>
 	);
 }

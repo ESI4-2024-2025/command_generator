@@ -26,3 +26,7 @@
 .notification-error {
 	background-color: red;
 }
+
+.notification-info {
+	background-color: orange;
+}
