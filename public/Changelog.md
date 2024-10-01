@@ -1,4 +1,5 @@
 # V2.2
+*01-10-2024*
 
 **Global :**
 
@@ -17,7 +18,10 @@
 
 - impossible de sélectionner et déplacer l'image de logo de la page d'accueil
 
-# V2.1 (29-09-2024)
+___
+
+# V2.1 
+*29-09-2024*
 
 **Global :**
 
@@ -49,7 +53,8 @@
 
 ___
 
-# V2.0 (28-09-2024)
+# V2.0 
+*28-09-2024*
 
 **Global :**
 
