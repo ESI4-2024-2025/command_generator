@@ -17,6 +17,7 @@ function GiveCommand() {
 	const [data, setData] = useState<Item[]>([]);
 	const [isMaterialDisabled, setIsMaterialDisabled] = useState(false);
 	const [notificationMessage, setNotificationMessage] = useState<string | null>(null);
+	const [showDefaultOption, setShowDefaultOption] = useState(true);
 
 	interface Version {
 		_id: string;
@@ -132,12 +133,13 @@ function GiveCommand() {
 		if (selectedItem) {
 			setSelectedItem(selectedItem);
 			setEnchantmentValues(new Array(selectedItem.enchantement.length).fill(0));
-			setMaterial("null"); // Reset material to "null" when item changes
+			setMaterial("null");
 		} else {
 			setSelectedItem(null);
-			setEnchantmentValues([]); // Reset enchantment values
-			setMaterial("null"); // Reset material to "null" when no item is selected
+			setEnchantmentValues([]);
+			setMaterial("null");
 		}
+		setShowDefaultOption(false);
 	};
 
 	const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -183,7 +185,7 @@ function GiveCommand() {
 					<label htmlFor="item" className="text-minecraft">Item</label>
 					<select className="minecraft-input fixed-width" name="item" id="item"
 							onChange={handleSelectItemChange}>
-						<option value="null">Select an item</option>
+						{showDefaultOption && <option value="null">Select an item</option>}
 						{data && data.map((item, index) => (
 							<option key={index} value={item.identifier}>{item.nom}</option>
 						))}

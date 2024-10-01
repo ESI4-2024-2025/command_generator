@@ -1,4 +1,10 @@
-# V2.1
+# V2.2
+
+**/give :**
+
+- suppression de l'option "Select an item" dans le select des items, si jamais cette valeur a téte modifiée
+
+# V2.1 (29-09-2024)
 
 **Global :**
 
@@ -30,7 +36,7 @@
 
 ___
 
-# V2.0
+# V2.0 (28-09-2024)
 
 **Global :**
 
