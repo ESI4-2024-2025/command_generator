@@ -30,7 +30,7 @@ function Creation() {
 			setNotificationMessage(undefined); // Reset notification message
 			setNotificationType(undefined); // Reset notification type
 			setTimeout(() => {
-				setNotificationMessage("Erreur de création de compte. Veuillez verifier vos informations.");
+				setNotificationMessage("Erreur de creation de compte. Veuillez verifier vos informations.");
 				setNotificationType("error");
 			}, 0); // Set new notification message and type
 		}

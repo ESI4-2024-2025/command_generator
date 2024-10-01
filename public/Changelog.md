@@ -11,7 +11,11 @@
 
 **Connexion et Creation :**
 
-- retrait du `é` problématique dans le message "vérifier vos informations"
+- retrait du `é` problématique dans le message "vérifier vos informations" et "erreur lors de la création"
+
+**Home :**
+
+- impossible de sélectionner et déplacer l'image de logo de la page d'accueil
 
 # V2.1 (29-09-2024)
 
