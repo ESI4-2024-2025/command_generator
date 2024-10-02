@@ -12,6 +12,8 @@ function Changelog() {
 
 - déploiements automatiques avec les workflows github (lorsqu'on push un tag)
 
+___
+
 # V2.2
 *01-10-2024*
 
