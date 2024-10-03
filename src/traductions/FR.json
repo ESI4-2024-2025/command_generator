@@ -1,7 +1,27 @@
 {
-  "HOME": {
-    "COMMANDES": "Commandes",
-    "PROFIL": "Profil",
-    "CHANGELOG":  "Changelog"
-  }
+	"GLOBAL" : {
+		"BACK" : "Retour"
+	},
+	"HOME" : {
+		"COMMANDES" : "Commandes",
+		"PROFIL" : "Profil",
+		"CHANGELOG" : "Changelog"
+	},
+	"CONNEXIONCREATION" : {
+		"CREATION" : "Création de compte",
+		"CONNEXION" : "Connexion",
+		"USERNAME" : "Nom d'utilisateur",
+		"MAIL" : "Adresse mail",
+		"TELEPHONE" : "Téléphone",
+		"PASSWORD" : "Mot de passe",
+		"CREATE" : "Créer un compte",
+		"CONNECT" : "Se connecter"
+	},
+	"PROFIL" : {
+		"TITLE" : "Informations de profil",
+		"USERNAME" : "Nom d'utilisateur",
+		"MAIL" : "Adresse mail",
+		"TELEPHONE" : "Téléphone",
+		"DECONECT" : "Se déconnecter"
+	}
 }
