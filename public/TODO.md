@@ -21,5 +21,6 @@
 
 ## database
 
+- virer les "noms" dans la database pour garder que les identifiers (après avoir fait les trad fr/en)
 - ajotuer tout les blocks en base avec version d'apparition
 - ajouter tout les biomes en base avec version d'apparition
