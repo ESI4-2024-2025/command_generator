@@ -1,4 +1,5 @@
 # v3
+*03-10-2024*
 
 **Global :**
 
@@ -12,6 +13,8 @@
 **Give encanted items :**
 
 - nouveau nom pour le /give
+
+___
 
 # v2.3
 *01-10-2024*
