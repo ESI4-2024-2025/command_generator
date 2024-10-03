@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import ButtonsJavaEdition from "../utilities/ButtonsJavaEdition";
 import "../../styles/Account.css";
+import {useTranslation} from "react-i18next";
 
 function Account() {
 	const navigate = useNavigate();
@@ -11,6 +12,7 @@ function Account() {
 		email: "",
 		phone: ""
 	});
+	const { t } = useTranslation();
 
 	useEffect(() => {
 		const token = localStorage.getItem("accessToken");
@@ -40,17 +42,17 @@ function Account() {
 
 	return (
 		<div className="accounts-page">
-			<h1 className="accounts-title">Informations de Profil</h1>
+			<h1 className="accounts-title">{t("PROFIL.TITLE")}</h1>
 			<div className="account" data-testid="Home">
 				<div className="account-information text-minecraft">
-					<p>Username: {userInfo.username}</p>
-					<p>Email: {userInfo.email}</p>
-					<p>Phone Number: {userInfo.phone}</p>
+					<p>{t("PROFIL.USERNAME")} : {userInfo.username}</p>
+					<p>{t("PROFIL.MAIL")} : {userInfo.email}</p>
+					<p>{t("PROFIL.PHONE")} : {userInfo.phone}</p>
 				</div>
 			</div>
 			<div className="account-buttons">
-				<ButtonsJavaEdition taille="19" title="Retour" path="/"/>
-				<ButtonsJavaEdition taille="19" title="Deconnexion" onClick={handleLogout}/>
+				<ButtonsJavaEdition taille="19" title="GLOBAL.BACK" path="/"/>
+				<ButtonsJavaEdition taille="19" title="PROFIL.DECONECT" onClick={handleLogout}/>
 			</div>
 		</div>
 	);

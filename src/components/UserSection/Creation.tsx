@@ -4,6 +4,7 @@ import "../../styles/Creation.css";
 import ButtonsJavaEdition from "../utilities/ButtonsJavaEdition";
 import Notification from "../utilities/Notification";
 import {useNavigate} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 function Creation() {
 	const [username, setUsername] = useState("");
@@ -13,6 +14,7 @@ function Creation() {
 	const [notificationMessage, setNotificationMessage] = useState<string | undefined>(undefined);
 	const [notificationType, setNotificationType] = useState<string | undefined>(undefined);
 	const navigate = useNavigate();
+	const { t } = useTranslation();
 
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
@@ -57,7 +59,7 @@ function Creation() {
 			<form onSubmit={handleSubmit}>
 				<div className="creation-input-block">
 					<div className="creation-input-wrapper">
-						<label htmlFor="username" className="creation-label">Nom d'utilisateur</label>
+						<label htmlFor="username" className="creation-label">{t("CONNEXION_CREATION.USERNAME")}</label>
 						<input
 							type="text"
 							id="username"
@@ -69,7 +71,7 @@ function Creation() {
 				</div>
 				<div className="creation-input-block">
 					<div className="creation-input-wrapper">
-						<label htmlFor="email" className="creation-label">Email</label>
+						<label htmlFor="email" className="creation-label">{t("CONNEXION_CREATION.MAIL")}</label>
 						<input
 							type="email"
 							id="email"
@@ -81,7 +83,7 @@ function Creation() {
 				</div>
 				<div className="creation-input-block">
 					<div className="creation-input-wrapper">
-						<label htmlFor="phone" className="creation-label">Numero de telephone</label>
+						<label htmlFor="phone" className="creation-label">{t("CONNEXION_CREATION.PHONE")}</label>
 						<input
 							type="text"
 							id="phone"
@@ -93,7 +95,7 @@ function Creation() {
 				</div>
 				<div className="creation-input-block">
 					<div className="creation-input-wrapper">
-						<label htmlFor="password" className="creation-label">Mot de passe</label>
+						<label htmlFor="password" className="creation-label">{t("CONNEXION_CREATION.PASSWORD")}</label>
 						<input
 							type="password"
 							id="password"
@@ -108,7 +110,7 @@ function Creation() {
 						 cancelable: true,
 						 bubbles: true
 					 }))}>
-					<ButtonsJavaEdition taille="20" title="Creer un compte"/>
+					<ButtonsJavaEdition taille="20" title="CONNEXION_CREATION.CREATION"/>
 				</div>
 			</form>
 			{notificationMessage && <Notification message={notificationMessage} type={notificationType}/>}

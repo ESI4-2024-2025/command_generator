@@ -27,11 +27,11 @@ function Home() {
 			</div>
 			<div className="home-buttons">
 				<div>
-					<ButtonsJavaEdition title="Commandes" taille="38" path="commands"/>
+					<ButtonsJavaEdition title="HOME.COMMANDES" taille="38" path="commands"/>
 				</div>
 				<div className="home-buttons-dual">
-					<ButtonsJavaEdition title="Profil" taille="19" path="account"/>
-					<ButtonsJavaEdition title="Changelog" taille="19" path="changelog"/>
+					<ButtonsJavaEdition title="HOME.PROFIL" taille="19" path="account"/>
+					<ButtonsJavaEdition title="HOME.CHANGELOG" taille="19" path="changelog"/>
 				</div>
 			</div>
 		</div>

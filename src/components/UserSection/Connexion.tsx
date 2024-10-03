@@ -5,6 +5,7 @@ import "../../styles/Connexion.css";
 import ButtonsJavaEdition from "../utilities/ButtonsJavaEdition";
 import Notification from "../utilities/Notification";
 import {useNavigate} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 function Connexion() {
 	const [email, setEmail] = useState("");
@@ -12,6 +13,7 @@ function Connexion() {
 	const [notificationMessage, setNotificationMessage] = useState<string | undefined>(undefined);
 	const [notificationType, setNotificationType] = useState<string | undefined>(undefined);
 	const navigate = useNavigate();
+	const { t } = useTranslation();
 
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
@@ -58,7 +60,7 @@ function Connexion() {
 			<form onSubmit={handleSubmit}>
 				<div className="connexion-input-block">
 					<div className="connexion-input-wrapper">
-						<label htmlFor="email" className="connexion-label">Email</label>
+						<label htmlFor="email" className="connexion-label">{t("CONNEXION_CREATION.MAIL")}</label>
 						<input
 							type="email"
 							id="email"
@@ -70,7 +72,7 @@ function Connexion() {
 				</div>
 				<div className="connexion-input-block">
 					<div className="connexion-input-wrapper">
-						<label htmlFor="password" className="connexion-label">Mot de passe</label>
+						<label htmlFor="password" className="connexion-label">{t("CONNEXION_CREATION.PASSWORD")}</label>
 						<input
 							type="password"
 							id="password"
@@ -81,7 +83,7 @@ function Connexion() {
 					</div>
 				</div>
 				<div className="connexion-button" onClick={handleDivClick}>
-					<ButtonsJavaEdition taille="20" title="Se connecter"/>
+					<ButtonsJavaEdition taille="20" title="CONNEXION_CREATION.CONNEXION"/>
 				</div>
 			</form>
 			{notificationMessage && <Notification message={notificationMessage} type={notificationType}/>}

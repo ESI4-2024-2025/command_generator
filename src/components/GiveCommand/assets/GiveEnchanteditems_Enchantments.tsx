@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import ButtonsJavaEdition from "../../utilities/ButtonsJavaEdition";
 import "../../../styles/InputJavaEdition.css";
+import {useTranslation} from "react-i18next";
 
 interface Enchantment {
 	_id: string;
@@ -21,6 +22,7 @@ const GiveEnchanteditems_Enchantments: React.FC<GiveCommand_EnchantmentsProps> =
 																			   resetValues
 																		   }) => {
 	const [values, setValues] = useState<number[]>([]);
+	const { t } = useTranslation();
 
 	useEffect(() => {
 		if (resetValues) {
@@ -58,7 +60,7 @@ const GiveEnchanteditems_Enchantments: React.FC<GiveCommand_EnchantmentsProps> =
 		<div className="main-container">
 			{enchantments && enchantments.map((enchantment, index) => (
 				<div key={index} className="input-block">
-					<label htmlFor={`input${index}`} className="text-minecraft">{enchantment.nom}</label>
+					<label htmlFor={`input${index}`} className="text-minecraft">{t(`MINECRAFT.ENCHANTMENTS.${enchantment.identifier.toUpperCase()}`)}</label>
 					<ButtonsJavaEdition taille="square" title="-" onClick={() => minus(index)}
 										disabled={values[index] === 0}/>
 					<input className="minecraft-input enchantement-value-input" id={`input${index}`} type="text" min="0"
