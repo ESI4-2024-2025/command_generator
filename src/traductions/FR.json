@@ -7,21 +7,112 @@
 		"PROFIL" : "Profil",
 		"CHANGELOG" : "Changelog"
 	},
-	"CONNEXIONCREATION" : {
-		"CREATION" : "Création de compte",
+	"CONNEXION_CREATION" : {
+		"CREATION" : "Creation de compte",
 		"CONNEXION" : "Connexion",
 		"USERNAME" : "Nom d'utilisateur",
 		"MAIL" : "Adresse mail",
-		"TELEPHONE" : "Téléphone",
+		"PHONE" : "Telephone",
 		"PASSWORD" : "Mot de passe",
-		"CREATE" : "Créer un compte",
+		"CREATE" : "Creer un compte",
 		"CONNECT" : "Se connecter"
 	},
 	"PROFIL" : {
 		"TITLE" : "Informations de profil",
 		"USERNAME" : "Nom d'utilisateur",
 		"MAIL" : "Adresse mail",
-		"TELEPHONE" : "Téléphone",
-		"DECONECT" : "Se déconnecter"
+		"PHONE" : "Telephone",
+		"DECONECT" : "Se deconnecter"
+	},
+	"COMMANDS" : {
+		"TITLE" : "Liste Des Commandes",
+		"GIVE_ENCHANTED_ITEMS" : "/give objets enchantes"
+	},
+	"GIVE_ENCHANTED_ITEMS" : {
+		"ITEM" : "Objet",
+		"MATERIAL" : "Materiau",
+		"USERNAME" : "Nom d'utilisateur",
+		"SELECT_ITEM" : "Selectionnez un objet",
+		"SELECT_MATERIAL" : "Selectionnez un materiau",
+		"NOT_NEEDED" : "Non necessaire",
+		"ERROR_CODE" : {
+			"MATERIAL" : "Materiau non selectionne.",
+			"ITEM" : "Objet non selectionne.",
+			"MATERIAL_AND_ITEM" : "Objet et materiau non selectionnes."
+		}
+	},
+	"MINECRAFT" : {
+		"ITEMS" : {
+			"HELMET" : "Casque",
+			"TURTLE_SHELL" : "Carapace de tortue",
+			"CHESTPLATE" : "Plastron",
+			"LEGGINGS" : "Jambieres",
+			"BOOTS" : "Bottes",
+			"SWORD" : "Epee",
+			"MACE" : "Massue",
+			"AXE" : "Hache",
+			"PICKAXE" : "Pioche",
+			"SHOVEL" : "Pelle",
+			"HOE" : "Houe",
+			"BOW" : "Arc",
+			"FISHING_ROD" : "Canne a peche",
+			"TRIDENT" : "Trident",
+			"CROSSBOW" : "Arbalete",
+			"SHEARS" : "Ciseaux",
+			"SHIELD" : "Bouclier",
+			"ELYTRA" : "Elytres"
+		},
+		"MATERIALS" : {
+			"WOODEN" : "Bois",
+			"LEATHER" : "Cuir",
+			"STONE" : "Pierre",
+			"CHAINMAIL" : "Mailles",
+			"IRON" : "Fer",
+			"GOLDEN" : "Or",
+			"DIAMOND" : "Diamant",
+			"NETHERITE" : "Netherite"
+		},
+		"ENCHANTMENTS" : {
+			"SWEEPING_EDGE": "Affilage",
+			"AQUA_AFFINITY": "Affinite aquatique",
+			"DEPTH_STRIDER": "Chute amortie",
+			"SOUL_SPEED": "Vitesse des âmes",
+			"RESPIRATION": "Respiration",
+			"LURE": "Appât",
+			"FIRE_ASPECT": "Aspect de feu",
+			"LOOTING": "Butin",
+			"CHANNELING": "Canalisation",
+			"LUCK_OF_THE_SEA": "Chance de la mer",
+			"QUICK_CHARGE": "Recharge rapide",
+			"SMITE": "Châtiment",
+			"FEATHER_FALLING": "Chute amortie",
+			"EFFICIENCY": "Efficacite",
+			"IMPALING": "Empalement",
+			"THORNS": "Epines",
+			"CLEAVING": "Clivage",
+			"FLAME": "Flamme",
+			"BANE_OF_ARTHROPODS": "Fleau des arthropodes",
+			"FORTUNE": "Fortune",
+			"PUNCH": "Coup de poing",
+			"SWIFT_SNEAK": "Furtivite rapide",
+			"RIPTIDE": "Courant marin",
+			"INFINITY": "Infinite",
+			"LOYALTY": "Loyaute",
+			"CURSE_OF_BINDING": "Malediction de lien",
+			"CURSE_OF_VANISHING": "Malediction de disparition",
+			"PIERCING": "Perforation",
+			"PROTECTION": "Protection",
+			"BLAST_PROTECTION": "Protection contre les explosions",
+			"FIRE_PROTECTION": "Protection contre le feu",
+			"PROJECTILE_PROTECTION": "Protection contre les projectiles",
+			"POWER": "Puissance",
+			"MENDING": "Reparation",
+			"KNOCKBACK": "Recul",
+			"FROST_WALKER": "Marcheur de givre",
+			"UNBREAKING": "Solidite",
+			"MULTISHOT": "Multicoup",
+			"SILK_TOUCH": "Toucher de soie",
+			"SHARPNESS": "Tranchant"
+		}
 	}
 }

@@ -1,7 +1,118 @@
 {
-  "HOME": {
-    "COMMANDES": "Commands",
-    "PROFIL": "Profile",
-    "CHANGELOG":  "Changelog"
+  "GLOBAL" : {
+    "BACK" : "Back"
+  },
+  "HOME" : {
+    "COMMANDES" : "Commands",
+    "PROFIL" : "Profile",
+    "CHANGELOG" : "Changelog"
+  },
+  "CONNEXION_CREATION" : {
+    "CREATION" : "Account Creation",
+    "CONNEXION" : "Login",
+    "USERNAME" : "Username",
+    "MAIL" : "Email Address",
+    "PHONE" : "Phone",
+    "PASSWORD" : "Password",
+    "CREATE" : "Create an Account",
+    "CONNECT" : "Login"
+  },
+  "PROFIL" : {
+    "TITLE" : "Profile Information",
+    "USERNAME" : "Username",
+    "MAIL" : "Email Address",
+    "PHONE" : "Phone",
+    "DECONECT" : "Logout"
+  },
+  "COMMANDS" : {
+    "TITLE" : "Command List",
+    "GIVE_ENCHANTED_ITEMS" : "/give enchanted items"
+  },
+  "GIVE_ENCHANTED_ITEMS" : {
+    "ITEM" : "Item",
+    "MATERIAL" : "Material",
+    "USERNAME" : "Username",
+    "SELECT_ITEM" : "Select an item",
+    "SELECT_MATERIAL" : "Select a material",
+    "NOT_NEEDED" : "Not needed",
+    "ERROR_CODE" : {
+      "MATERIAL" : "Material not selected.",
+      "ITEM" : "Item not selected.",
+      "MATERIAL_AND_ITEM" : "Item and material not selected."
+    }
+  },
+  "MINECRAFT" : {
+  "ITEMS" : {
+    "HELMET" : "helmet",
+    "TURTLE_SHELL" : "turtle shell",
+    "CHESTPLATE" : "chestplate",
+    "LEGGINGS" : "leggings",
+    "BOOTS" : "boots",
+    "SWORD" : "sword",
+    "MACE" : "mace",
+    "AXE" : "axe",
+    "PICKAXE" : "pickaxe",
+    "SHOVEL" : "shovel",
+    "HOE" : "hoe",
+    "BOW" : "bow",
+    "FISHING_ROD" : "fishing rod",
+    "TRIDENT" : "trident",
+    "CROSSBOW" : "crossbow",
+    "SHEARS" : "shears",
+    "SHIELD" : "shield",
+    "ELYTRA" : "elytra"
+  },
+  "MATERIALS" : {
+    "WOODEN" : "wood",
+    "LEATHER" : "leather",
+    "STONE" : "stone",
+    "CHAINMAIL" : "chainmail",
+    "IRON" : "iron",
+    "GOLDEN" : "gold",
+    "DIAMOND" : "diamond",
+    "NETHERITE" : "netherite"
+  },
+  "ENCHANTMENTS" : {
+    "SWEEPING_EDGE": "sweeping edge",
+    "AQUA_AFFINITY": "aqua affinity",
+    "DEPTH_STRIDER": "depth strider",
+    "SOUL_SPEED": "soul speed",
+    "RESPIRATION": "respiration",
+    "LURE": "lure",
+    "FIRE_ASPECT": "fire aspect",
+    "LOOTING": "looting",
+    "CHANNELING": "channeling",
+    "LUCK_OF_THE_SEA": "luck of the sea",
+    "QUICK_CHARGE": "quick charge",
+    "SMITE": "smite",
+    "FEATHER_FALLING": "feather falling",
+    "EFFICIENCY": "efficiency",
+    "IMPALING": "impaling",
+    "THORNS": "thorns",
+    "CLEAVING": "cleaving",
+    "FLAME": "flame",
+    "BANE_OF_ARTHROPODS": "bane of arthropods",
+    "FORTUNE": "fortune",
+    "PUNCH": "punch",
+    "SWIFT_SNEAK": "swift sneak",
+    "RIPTIDE": "riptide",
+    "INFINITY": "infinity",
+    "LOYALTY": "loyalty",
+    "CURSE_OF_BINDING": "curse of binding",
+    "CURSE_OF_VANISHING": "curse of vanishing",
+    "PIERCING": "piercing",
+    "PROTECTION": "protection",
+    "BLAST_PROTECTION": "blast protection",
+    "FIRE_PROTECTION": "fire protection",
+    "PROJECTILE_PROTECTION": "projectile protection",
+    "POWER": "power",
+    "MENDING": "mending",
+    "KNOCKBACK": "knockback",
+    "FROST_WALKER": "frost walker",
+    "UNBREAKING": "unbreaking",
+    "MULTISHOT": "multishot",
+    "SILK_TOUCH": "silk touch",
+    "SHARPNESS": "sharpness"
   }
+}
 }

@@ -1,6 +1,6 @@
 .give-enchanted-items {
-	width:  50vw;
 	margin: 0 25vw;
+	width:  50vw;
 }
 
 .text-minecraft {
@@ -20,7 +20,7 @@
 	align-items:     center;
 	display:         flex;
 	flex-direction:  row;
-	justify-content: space-between;
+	justify-content: center;
 	margin-bottom:   20px;
 }
 
@@ -31,17 +31,13 @@
 }
 
 .input-block label {
-	flex:          0.5;
+	flex:          .6;
 	padding-right: 10px;
 	text-align:    left;
 }
 
 .input-block button, .input-block input, .input-block select {
 	flex: 0.1666;
-}
-
-.input-block {
-	justify-content: center;
 }
 
 .command-renderer {
@@ -70,5 +66,5 @@
 	box-sizing: border-box;
 	height:     4rem;
 	margin:     0;
-	min-width: 20rem;
+	min-width:  25rem;
 }

@@ -5,6 +5,7 @@ import GiveEnchanteditems_Enchantments from "./assets/GiveEnchanteditems_Enchant
 import Notification from "../utilities/Notification";
 import "../../styles/GiveEnchantedItems.css";
 import "../../styles/InputJavaEdition.css";
+import {useTranslation} from "react-i18next";
 
 function GiveEnchantedItems() {
 	const [item, setItem] = useState("null");
@@ -19,6 +20,7 @@ function GiveEnchantedItems() {
 	const [notificationMessage, setNotificationMessage] = useState<{ text: string, type: string } | null>(null);
 	const [showDefaultOption, setShowDefaultOption] = useState(true);
 	const [isCopyDisabled, setIsCopyDisabled] = useState(false);
+	const { t } = useTranslation();
 
 	interface Version {
 		_id: string;
@@ -111,15 +113,15 @@ function GiveEnchantedItems() {
 
 		switch (true) {
 			case (material === "null" && item === "null"):
-				setCommandResult(`Neither material nor item is selected.`);
+				setCommandResult(`${t("GIVE_ENCHANTED_ITEMS.ERROR_CODE.MATERIAL_AND_ITEM")}`);
 				setIsCopyDisabled(true);
 				break;
 			case (material === "null"):
-				setCommandResult(`Material is not selected.`);
+				setCommandResult(`${t("GIVE_ENCHANTED_ITEMS.ERROR_CODE.MATERIAL")}`);
 				setIsCopyDisabled(true);
 				break;
 			case (item === "null"):
-				setCommandResult(`Item is not selected.`);
+				setCommandResult(`${t("GIVE_ENCHANTED_ITEMS.ERROR_CODE.ITEM")}`);
 				setIsCopyDisabled(true);
 				break;
 			default:
@@ -188,33 +190,33 @@ function GiveEnchantedItems() {
 	return (
 		<div className="give-enchanted-items" data-testid="GiveEnchantedItems">
 			<div className="back-button-container">
-				<ButtonsJavaEdition taille="20" title="Retour" path="goback"/>
+				<ButtonsJavaEdition taille="20" title="GLOBAL.BACK" path="goback"/>
 			</div>
 			<div className="main-container">
 				<div className="input-block">
-					<label htmlFor="item" className="text-minecraft">Item</label>
+					<label htmlFor="item" className="text-minecraft">{t("GIVE_ENCHANTED_ITEMS.ITEM")}</label>
 					<select className="minecraft-input fixed-width" name="item" id="item"
 							onChange={handleSelectItemChange}>
-						{showDefaultOption && <option value="null">Select an item</option>}
+						{showDefaultOption && <option value="null">{t("GIVE_ENCHANTED_ITEMS.SELECT_ITEM")}</option>}
 						{data && data.map((item, index) => (
-							<option key={index} value={item.identifier}>{item.nom}</option>
+							<option key={index} value={item.identifier}>{t(`MINECRAFT.ITEMS.${item.identifier.toUpperCase()}`)}</option>
 						))}
 					</select>
 				</div>
 
 				<div className="input-block">
-					<label htmlFor="material" className="text-minecraft">Material</label>
+					<label htmlFor="material" className="text-minecraft">{t("GIVE_ENCHANTED_ITEMS.MATERIAL")}</label>
 					<select name="material" id="material" className="minecraft-input fixed-width"
 							value={material} onChange={handleMaterialChange} disabled={isMaterialDisabled}>
-						<option value="null">{isMaterialDisabled ? "not needed" : "Select a material"}</option>
+						<option value="null">{t(`GIVE_ENCHANTED_ITEMS.${isMaterialDisabled ? "NOT_NEEDED" : "SELECT_MATERIAL"}`)}</option>
 						{selectedItem && selectedItem.materiaux && selectedItem.materiaux.map((material: any, index: number) => (
-							<option key={index} value={material.identifier}>{material.nom}</option>
+							<option key={index} value={material.identifier}>{t(`MINECRAFT.MATERIALS.${material.identifier.toUpperCase()}`)}</option>
 						))}
 					</select>
 				</div>
 
 				<div className="input-block">
-					<label htmlFor="username" className="text-minecraft">Username</label>
+					<label htmlFor="username" className="text-minecraft">{t("GIVE_ENCHANTED_ITEMS.USERNAME")}</label>
 					<input
 						type="text"
 						id="username"
