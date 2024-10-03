@@ -1,12 +1,12 @@
-// src/components/GiveCommand/GiveCommand.tsx
+// src/components/GiveEnchantedItems/GiveEnchantedItems.tsx
 import React, {useEffect, useState} from "react";
 import ButtonsJavaEdition from "../utilities/ButtonsJavaEdition";
-import GiveCommand_Enchantments from "./assets/GiveCommand_Enchantments";
+import GiveEnchanteditems_Enchantments from "./assets/GiveEnchanteditems_Enchantments";
 import Notification from "../utilities/Notification";
-import "../../styles/GiveCommand.css";
+import "../../styles/GiveEnchantedItems.css";
 import "../../styles/InputJavaEdition.css";
 
-function GiveCommand() {
+function GiveEnchantedItems() {
 	const [item, setItem] = useState("null");
 	const [selectedItem, setSelectedItem] = useState<any>(null);
 	const [enchantmentValues, setEnchantmentValues] = useState<number[]>([]);
@@ -170,8 +170,8 @@ function GiveCommand() {
 		if (!itemData || !itemData.enchantement) {
 			return null;
 		}
-		return <GiveCommand_Enchantments enchantments={itemData.enchantement}
-										 onValuesChange={handleEnchantmentValuesChange} resetValues={true}/>;
+		return <GiveEnchanteditems_Enchantments enchantments={itemData.enchantement}
+												onValuesChange={handleEnchantmentValuesChange} resetValues={true}/>;
 	};
 
 	const copyToClipboard = () => {
@@ -186,7 +186,7 @@ function GiveCommand() {
 	};
 
 	return (
-		<div className="give-command" data-testid="GiveCommand">
+		<div className="give-enchanted-items" data-testid="GiveEnchantedItems">
 			<div className="back-button-container">
 				<ButtonsJavaEdition taille="20" title="Retour" path="goback"/>
 			</div>
@@ -244,4 +244,4 @@ function GiveCommand() {
 	);
 }
 
-export default GiveCommand;
+export default GiveEnchantedItems;

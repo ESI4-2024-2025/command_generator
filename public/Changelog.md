@@ -1,11 +1,25 @@
-# V2.3
+# v2.4
+
+**Global :**
+
+- retrait des <-- dans les boutons retour
+
+**/give :**
+
+- suppression du nom pour /Give encanted items
+
+**Give encanted items :**
+
+- nouveau nom pour le /give
+
+# v2.3
 *01-10-2024*
 
 **Global :**
 
 - déploiements automatiques avec les workflows github (lorsqu'on push un tag)
 
-# V2.2
+# v2.2
 *01-10-2024*
 
 **Global :**
@@ -27,7 +41,7 @@
 
 ___
 
-# V2.1 
+# v2.1 
 *29-09-2024*
 
 **Global :**
@@ -60,7 +74,7 @@ ___
 
 ___
 
-# V2.0 
+# v2
 *28-09-2024*
 
 **Global :**

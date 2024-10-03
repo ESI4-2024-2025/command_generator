@@ -1,12 +1,12 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import GiveCommand from '../../components/GiveCommand/GiveCommand';
+import GiveEnchantedItems from '../../components/GiveCommand/GiveEnchantedItems';
 import { MemoryRouter } from 'react-router';
 
-describe('GiveCommand component', () => {
+describe('GiveEnchantedItems component', () => {
     beforeEach(() => {
         render(
             <MemoryRouter>
-                <GiveCommand />
+                <GiveEnchantedItems />
             </MemoryRouter>
         );
     });

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 import Home from '../components/Commands';
-import GiveCommand from '../components/GiveCommand/GiveCommand';
+import GiveEnchantedItems from '../components/GiveCommand/GiveEnchantedItems';
 
 describe('App component', () => {
     it('renders the Home component when the path is "/"', () => {
@@ -18,11 +18,11 @@ describe('App component', () => {
         expect(homeComponent).toBeInTheDocument();
     });
 
-    it('renders the GiveCommand component when the path is "/give"', () => {
+    it('renders the GiveEnchantedItems component when the path is "/give"', () => {
         render(
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<GiveCommand />} />
+                    <Route path="/" element={<GiveEnchantedItems />} />
                 </Routes>
             </BrowserRouter>
         );

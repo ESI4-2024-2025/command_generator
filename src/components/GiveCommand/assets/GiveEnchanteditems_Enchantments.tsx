@@ -15,7 +15,7 @@ interface GiveCommand_EnchantmentsProps {
 	resetValues?: boolean;
 }
 
-const GiveCommand_Enchantments: React.FC<GiveCommand_EnchantmentsProps> = ({
+const GiveEnchanteditems_Enchantments: React.FC<GiveCommand_EnchantmentsProps> = ({
 																			   enchantments,
 																			   onValuesChange,
 																			   resetValues
@@ -71,4 +71,4 @@ const GiveCommand_Enchantments: React.FC<GiveCommand_EnchantmentsProps> = ({
 	);
 };
 
-export default GiveCommand_Enchantments;
+export default GiveEnchanteditems_Enchantments;

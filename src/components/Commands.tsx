@@ -7,7 +7,7 @@ function Commands() {
 			<h1 className="commands-title">Liste Des Commandes</h1>
 			<div className="commands" data-testid="Home">
 				<div className="commands-buttons">
-					<ButtonsJavaEdition title="/GIVE" taille="35" path="give"/>
+					<ButtonsJavaEdition title="/give enchanted items" taille="35" path="give"/>
 				</div>
 			</div>
 			<div className="back-button">
