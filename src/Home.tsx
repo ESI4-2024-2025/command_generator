@@ -2,8 +2,10 @@ import ButtonsJavaEdition from "./components/utilities/ButtonsJavaEdition";
 import "./styles/Home.css";
 import {useEffect} from "react";
 import logo from "./img/Logo.png";
+import { useTranslation } from "react-i18next";
 
 function Home() {
+	const { t } = useTranslation();
 
 	function getRandomBackgroundClass(): string {
 		const classes = ["html-bg-1", "html-bg-2", "html-bg-3", "html-bg-4", "html-bg-5", "html-bg-6", "html-bg-7", "html-bg-8", "html-bg-9", "html-bg-10", "html-bg-11"];
@@ -27,7 +29,7 @@ function Home() {
 			</div>
 			<div className="home-buttons">
 				<div>
-					<ButtonsJavaEdition title="Commandes" taille="38" path="commands"/>
+					<ButtonsJavaEdition title={t("COMMANDES")} taille="38" path="commands"/>
 				</div>
 				<div className="home-buttons-dual">
 					<ButtonsJavaEdition title="Profil" taille="19" path="account"/>
