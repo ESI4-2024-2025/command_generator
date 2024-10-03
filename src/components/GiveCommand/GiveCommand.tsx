@@ -188,7 +188,7 @@ function GiveCommand() {
 	return (
 		<div className="give-command" data-testid="GiveCommand">
 			<div className="back-button-container">
-				<ButtonsJavaEdition taille="20" title="<-- Retour" path="goback"/>
+				<ButtonsJavaEdition taille="20" title="Retour" path="goback"/>
 			</div>
 			<div className="main-container">
 				<div className="input-block">

@@ -10,7 +10,7 @@ function AccountCreationOrConnexion() {
     return (
         <div className="account-creation-or-connexion">
             <div className="back-button-container">
-                <ButtonsJavaEdition taille="20" title="<-- Retour" path="/"/>
+                <ButtonsJavaEdition taille="20" title="Retour" path="/"/>
             </div>
             <div className="tabs">
                 <button className={`tab ${activeTab === "creation" ? "active" : ""}`}

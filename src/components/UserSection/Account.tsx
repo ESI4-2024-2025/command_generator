@@ -49,7 +49,7 @@ function Account() {
 				</div>
 			</div>
 			<div className="account-buttons">
-				<ButtonsJavaEdition taille="19" title="<-- Retour" path="/"/>
+				<ButtonsJavaEdition taille="19" title="Retour" path="/"/>
 				<ButtonsJavaEdition taille="19" title="Deconnexion" onClick={handleLogout}/>
 			</div>
 		</div>

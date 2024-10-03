@@ -2,7 +2,7 @@
 
 ## Maintenant
 
-- passer le changelog dans /src/ pour voir si il s'affiche avec un fs même en build
+- trouver une solution pour le changelog
 - renommer le /GIVE en "give enchanted items"
 - appeler la requête lors de la copie d'une commande `/ARequest`
 - empêcher la création d'un compte si l'username ou le mail est déja en base
