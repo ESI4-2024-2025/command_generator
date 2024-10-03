@@ -10,7 +10,6 @@
 
 ## Gros oeuvre (sur branche)
 
-- faire des trad en.json et fr.json pour traduire, utiuliser l'identifier (donc a bas le nom en base)
 - gérer les verisons pour le /give
 - faire une page de superflat
 - faire une page de potions

@@ -1,7 +1,8 @@
-# v2.4
+# v3
 
 **Global :**
 
+- traduction en français et en anglais
 - retrait des <-- dans les boutons retour
 
 **/give :**
