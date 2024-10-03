@@ -1,5 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import "../../styles/ButtonsJavaEdition.css";
+import { useTranslation } from "react-i18next";
 
 interface McButtonsProps {
 	taille: string;
@@ -10,6 +11,8 @@ interface McButtonsProps {
 }
 
 const ButtonsJavaEdition: React.FC<McButtonsProps> = ({taille, title, path, onClick, disabled}) => {
+	const { t } = useTranslation();
+
 	const navigate = useNavigate();
 	const goBack = () => {
 		navigate(-1);
@@ -33,7 +36,7 @@ const ButtonsJavaEdition: React.FC<McButtonsProps> = ({taille, title, path, onCl
 	return (
 		<div className="McButtons" data-testid="ButtonsJavaEdition" onClick={handleClick} style={buttonStyle}>
 			<div className={buttonClass}>
-				<div className="title">{title}</div>
+				<div className="title">{t(title)}</div>
 			</div>
 		</div>
 	);

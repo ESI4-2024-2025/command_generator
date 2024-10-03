@@ -1,3 +1,7 @@
 {
-  "COMMANDES": "commands"
+  "HOME": {
+    "COMMANDES": "Commands",
+    "PROFIL": "Profile",
+    "CHANGELOG":  "Changelog"
+  }
 }
