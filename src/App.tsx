@@ -8,11 +8,13 @@ import AccountCreationOrConnexion from "./components/UserSection/AccountCreation
 import Account from "./components/UserSection/Account";
 import Changelog from "./components/Changelog/Changelog";
 import LanguageSelector from "./components/Languageselector/LanguageSelector";
+import VersionSelector from "./components/VersionSelector/VersionSelector";
 
 function App() {
 	return (
 		<div className="app">
 			<LanguageSelector/>
+			<VersionSelector />
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Home/>}/>
