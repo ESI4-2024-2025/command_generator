@@ -6,6 +6,7 @@ import Notification from "../utilities/Notification";
 import "../../styles/GiveEnchantedItems.css";
 import "../../styles/InputJavaEdition.css";
 import {useTranslation} from "react-i18next";
+import { generateEnchantmentCommand } from "./Generator";
 
 function GiveEnchantedItems() {
 	const [item, setItem] = useState("null");
@@ -85,49 +86,37 @@ function GiveEnchantedItems() {
 		renderEnchantment(item, selectedItem, enchantmentValues, username, material);
 	}, [item, selectedItem, enchantmentValues, username, material]);
 
-	const renderEnchantment = (item: string,
-							   selectedItem: any,
-							   enchantmentValues: number[],
-							   username: string,
-							   material: string): void => {
-
-		let enchantements: string = "";
-
-		if (enchantmentValues.length > 0) {
-			let index = 0;
-			console.log(selectedItem);
-			enchantmentValues.forEach((value) => {
-				if (value > 0) {
-					enchantements = enchantements + `{id:${selectedItem.enchantement[index].identifier},lvl:${value.toString()}s}`;
-				} else {
-					enchantements = enchantements + "";
-				}
-				index++;
-			});
-
-			if (enchantements) {
-				enchantements = enchantements.replace(/}\{/g, "},{");
-				enchantements = `{Enchantments:[${enchantements}]}`;
-			}
-		}
+	const renderEnchantment = (
+		item: string,
+		selectedItem: any,
+		enchantmentValues: number[],
+		username: string,
+		material: string
+	): void => {
+		const enchantementCommand = generateEnchantmentCommand(
+			item,
+			selectedItem,
+			enchantmentValues,
+			username,
+			material,
+			isMaterialDisabled
+		);
 
 		switch (true) {
-			case (material === "null" && item === "null"):
+			case material === "null" && item === "null":
 				setCommandResult(`${t("GIVE_ENCHANTED_ITEMS.ERROR_CODE.MATERIAL_AND_ITEM")}`);
 				setIsCopyDisabled(true);
 				break;
-			case (material === "null"):
+			case material === "null":
 				setCommandResult(`${t("GIVE_ENCHANTED_ITEMS.ERROR_CODE.MATERIAL")}`);
 				setIsCopyDisabled(true);
 				break;
-			case (item === "null"):
+			case item === "null":
 				setCommandResult(`${t("GIVE_ENCHANTED_ITEMS.ERROR_CODE.ITEM")}`);
 				setIsCopyDisabled(true);
 				break;
 			default:
-				setCommandResult(
-					`/give ${username ? username : "@p"} ${isMaterialDisabled ? item : `${material}_${item}`}${enchantements}`
-				);
+				setCommandResult(enchantementCommand);
 				setIsCopyDisabled(false);
 				break;
 		}
