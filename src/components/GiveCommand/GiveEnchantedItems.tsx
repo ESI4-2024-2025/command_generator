@@ -6,9 +6,14 @@ import Notification from "../utilities/Notification";
 import "../../styles/GiveEnchantedItems.css";
 import "../../styles/InputJavaEdition.css";
 import {useTranslation} from "react-i18next";
-import { generateEnchantmentCommand } from "./Generator";
+import {generateEnchantmentCommand} from "./Generator";
 
-function GiveEnchantedItems() {
+interface GiveEnchantedItemsProps {
+	version: string;
+	language: string;
+}
+
+const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, language}) => {
 	const [item, setItem] = useState("null");
 	const [selectedItem, setSelectedItem] = useState<any>(null);
 	const [enchantmentValues, setEnchantmentValues] = useState<number[]>([]);
@@ -21,7 +26,7 @@ function GiveEnchantedItems() {
 	const [notificationMessage, setNotificationMessage] = useState<{ text: string, type: string } | null>(null);
 	const [showDefaultOption, setShowDefaultOption] = useState(true);
 	const [isCopyDisabled, setIsCopyDisabled] = useState(false);
-	const { t } = useTranslation();
+	const {t} = useTranslation();
 
 	interface Version {
 		_id: string;
@@ -84,7 +89,7 @@ function GiveEnchantedItems() {
 
 	useEffect(() => {
 		renderEnchantment(item, selectedItem, enchantmentValues, username, material);
-	}, [item, selectedItem, enchantmentValues, username, material]);
+	}, [item, selectedItem, enchantmentValues, username, material, version, language]);
 
 	const renderEnchantment = (
 		item: string,
@@ -116,9 +121,15 @@ function GiveEnchantedItems() {
 				setIsCopyDisabled(true);
 				break;
 			default:
-				setCommandResult(enchantementCommand);
-				setIsCopyDisabled(false);
-				break;
+				if (enchantementCommand === "error") {
+					setCommandResult(`${t("GIVE_ENCHANTED_ITEMS.ERROR_CODE.VERSION_NOT_SUPPORTED")}`);
+					setIsCopyDisabled(true);
+					break;
+				} else {
+					setCommandResult(enchantementCommand);
+					setIsCopyDisabled(false);
+					break;
+				}
 		}
 	};
 
@@ -167,11 +178,11 @@ function GiveEnchantedItems() {
 
 	const copyToClipboard = () => {
 		if (isCopyDisabled) {
-			setNotificationMessage({ text: "impossible de copier une commande vide", type: "info" });
+			setNotificationMessage({text: "impossible de copier une commande vide", type: "info"});
 			setTimeout(() => setNotificationMessage(null), 3000);
 		} else {
 			navigator.clipboard.writeText(commandResult);
-			setNotificationMessage({ text: "Copie dans le presse papier", type: "success" });
+			setNotificationMessage({text: "Copie dans le presse papier", type: "success"});
 			setTimeout(() => setNotificationMessage(null), 3000);
 		}
 	};
@@ -233,6 +244,6 @@ function GiveEnchantedItems() {
 			{notificationMessage && <Notification message={notificationMessage.text} type={notificationMessage.type}/>}
 		</div>
 	);
-}
+};
 
 export default GiveEnchantedItems;

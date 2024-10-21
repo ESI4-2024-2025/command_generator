@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import "./styles/App.css";
 import Commands from "./components/Commands";
@@ -11,15 +11,18 @@ import LanguageSelector from "./components/Languageselector/LanguageSelector";
 import VersionSelector from "./components/VersionSelector/VersionSelector";
 
 function App() {
+	const [version, setVersion] = useState("");
+	const [language, setLanguage] = useState("");
+
 	return (
 		<div className="app">
-			<LanguageSelector/>
-			<VersionSelector />
+			<LanguageSelector setLanguage={setLanguage}/>
+			<VersionSelector setVersion={setVersion}/>
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Home/>}/>
 					<Route path="/commands" element={<Commands/>}/>
-					<Route path="/commands/give" element={<GiveEnchantedItems/>}/>
+					<Route path="/commands/give" element={<GiveEnchantedItems version={version} language={language}/>}/>
 					<Route path="/account" element={<Account/>}/>
 					<Route path="/account/creationorconnexion" element={<AccountCreationOrConnexion/>}/>
 					<Route path="/changelog" element={<Changelog/>}/>
