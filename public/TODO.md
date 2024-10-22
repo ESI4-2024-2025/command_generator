@@ -13,7 +13,6 @@
 
 ## Gros oeuvre (sur branche)
 
-- gérer les verisons pour le /give
 - faire une page de superflat
 - faire une page de potions
 - ajouter des logs dans le back
@@ -22,6 +21,6 @@
 
 ## database
 
-- virer les "noms" dans la database pour garder que les identifiers (après avoir fait les trad fr/en)
+- virer les "noms" dans la database pour garder que les identifiers
 - ajotuer tout les blocks en base avec version d'apparition
 - ajouter tout les biomes en base avec version d'apparition

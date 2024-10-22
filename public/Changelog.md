@@ -1,3 +1,16 @@
+# v4
+*03-10-2024*
+
+**Global :**
+
+- sélection de version
+
+**Give encanted items :**
+
+- gestion TOTALE de la version, pour les oubjets, les materiaux, les enchantements et les différentes version de la commande /give (elle change en fonction de la version du jeu)
+
+___
+
 # v3
 *03-10-2024*
 
