@@ -39,7 +39,8 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 			});
 	}, []);
 
-	// Reset the selected item, enchantment values, username, material, and enchantmentRenderedSwitch if the selected item is "null".
+	// Reset the selected item, enchantment values, username, material, and enchantmentRenderedSwitch if the selected
+	// item is "null".
 	useEffect(() => {
 		if (item === "null") {
 			setSelectedItem(null);
@@ -51,15 +52,19 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 		}
 	}, [item]);
 
-	// Reset the selected item, enchantment values, and material if the selected item is not found in the data or if the version is lower than the selected item's version.
+	// Reset the selected item, enchantment values, and material if the selected item is not found in the data or if
+	// the version is lower than the selected item's version.
 	useEffect(() => {
 		const selectedItem = data.find(dataItem => dataItem.identifier === item);
+		const selectedMaterial = selectedItem && selectedItem.materiaux.find(dataMaterial => dataMaterial.identifier === material);
 		if (!selectedItem || version < selectedItem.version) {
 			setShowDefaultOption(true);
 			setSelectedItem(null);
 			setEnchantmentValues([]);
 			setMaterial("null");
 			setItem("null");
+		} else if (!selectedMaterial && version < selectedItem.version) {
+			setMaterial("null");
 		}
 	}, [version, data]);
 
@@ -76,12 +81,15 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 		}
 	}, [selectedItem, item, version]);
 
-	// Generate the enchantment command when the item, selected item, enchantment values, username, material, version, or language changes.
+	// Generate the enchantment command when the item, selected item, enchantment values, username, material, version,
+	// or language changes.
 	useEffect(() => {
 		renderEnchantment(item, selectedItem, enchantmentValues, username, material);
 	}, [item, selectedItem, enchantmentValues, username, material, version, language]);
 
-	// Generate the enchantment command based on the item, selected item, enchantment values, username, material, and isMaterialDisabled.
+
+	// Generate the enchantment command based on the item, selected item, enchantment values, username, material, and
+	// isMaterialDisabled.
 	const renderEnchantment = (
 		item: string,
 		selectedItem: any,
@@ -218,9 +226,13 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 					<select name="material" id="material" className="minecraft-input fixed-width"
 							value={material} onChange={handleMaterialChange} disabled={isMaterialDisabled}>
 						<option value="null">{t(`GIVE_ENCHANTED_ITEMS.${isMaterialDisabled ? "NOT_NEEDED" : "SELECT_MATERIAL"}`)}</option>
-						{selectedItem && selectedItem.materiaux && selectedItem.materiaux.map((material: any, index: number) => (
-							<option key={index} value={material.identifier}>{t(`MINECRAFT.MATERIALS.${material.identifier.toUpperCase()}`)}</option>
-						))}
+						{selectedItem && selectedItem.materiaux && selectedItem.materiaux
+							.filter((material: any) => version && version >= material.version)
+							.map((material: any, index: number) => (
+								<option key={index} value={material.identifier}>
+									{t(`MINECRAFT.MATERIALS.${material.identifier.toUpperCase()}`)}
+								</option>
+							))}
 					</select>
 				</div>
 
