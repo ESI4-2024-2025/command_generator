@@ -187,13 +187,30 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 		);
 	};
 
-	// Copy the command to the clipboard.
+	/**
+	 * 	Copy the command to the clipboard and send a request to the server.
+	 * 	if the command is empty, display a notification message.
+	 */
 	const copyToClipboard = () => {
 		if (isCopyDisabled) {
 			setNotificationMessage({text: "impossible de copier une commande vide", type: "info"});
 			setTimeout(() => setNotificationMessage(null), 3000);
 		} else {
-			navigator.clipboard.writeText(commandResult).then(r => setNotificationMessage({
+			navigator.clipboard.writeText(commandResult)
+				.then(() => {
+					// Make the request to the server
+					fetch(`${process.env.REACT_APP_HOST_BACK}/ARequest`, {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							Command: commandResult,
+							Version: version
+						})
+					});
+				})
+				.then(() => setNotificationMessage({
 					text: "Copie dans le presse papier",
 					type: "success"
 				}))
@@ -201,7 +218,7 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 					text: "Erreur lors de la copie",
 					type: "error"
 				}));
-			setTimeout(() => setNotificationMessage(null), 3000);
+			setTimeout(() => setNotificationMessage(null), 3000);;
 		}
 	};
 

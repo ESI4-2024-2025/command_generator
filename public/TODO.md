@@ -2,7 +2,6 @@
 
 ## Maintenant
 
-- trouver une solution pour le changelog
 - appeler la requête lors de la copie d'une commande `/ARequest`
 - empêcher la création d'un compte si l'username ou le mail est déja en base
 - faire la verif par mail
