@@ -3,7 +3,8 @@
 
 **Global :**
 
-- sélection de version
+- possibilité de sélectionner la version de minecraft
+- ajout de majuscules au début de tout les items, materiaux et enchantements en anglais
 
 **Give encanted items :**
 

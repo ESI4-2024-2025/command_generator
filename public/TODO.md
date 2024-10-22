@@ -2,7 +2,6 @@
 
 ## Maintenant
 
-- majuscules en anglais
 - font avec des accent si possible
 - faire un loader pour les moment ou ça load
 - trouver une solution pour le changelog

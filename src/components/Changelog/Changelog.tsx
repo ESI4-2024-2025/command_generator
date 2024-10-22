@@ -5,7 +5,21 @@ import ReactMarkdown from "react-markdown";
 
 function Changelog() {
 
-	const markdownContent = `# v3
+	const markdownContent = `# v4
+*22-10-2024*
+
+**Global :**
+
+- possibilité de sélectionner la version de minecraft
+- ajout de majuscules au début de tout les items, materiaux et enchantements en anglais
+
+**Give encanted items :**
+
+- gestion TOTALE de la version, pour les oubjets, les materiaux, les enchantements et les différentes version de la commande /give (elle change en fonction de la version du jeu)
+
+___
+
+# v3
 *03-10-2024*
 
 **Global :**
