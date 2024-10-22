@@ -23,7 +23,8 @@
     "USERNAME": "Username",
     "MAIL": "Email Address",
     "PHONE": "Phone",
-    "DECONECT": "Logout"
+    "DECONECT": "Logout",
+    "MAIL_UNVERIFIED": "Email address not verified"
   },
   "COMMANDS": {
     "TITLE": "Command List",

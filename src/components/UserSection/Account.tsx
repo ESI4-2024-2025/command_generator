@@ -4,6 +4,7 @@ import axios from "axios";
 import ButtonsJavaEdition from "../utilities/ButtonsJavaEdition";
 import "../../styles/Account.css";
 import {useTranslation} from "react-i18next";
+import Notification from "../utilities/Notification"; // Assuming you have a Notification component
 
 function Account() {
 	const navigate = useNavigate();
@@ -12,7 +13,12 @@ function Account() {
 		email: "",
 		phone: ""
 	});
-	const { t } = useTranslation();
+	type NotificationMessage = {
+		text: string;
+		type: string;
+	};
+	const [notificationMessage, setNotificationMessage] = useState<NotificationMessage | null>(null);
+	const {t} = useTranslation();
 
 	useEffect(() => {
 		const token = localStorage.getItem("accessToken");
@@ -25,9 +31,14 @@ function Account() {
 				}
 			})
 				.then(response => {
-					console.log(response.data);
-					const {username, email, phone} = response.data;
+					const {username, email, phone, email_verified} = response.data;
 					setUserInfo({username, email, phone});
+					if (!email_verified) {
+						setNotificationMessage({
+							text: t("PROFIL.MAIL_UNVERIFIED"),
+							type: "info"
+						});
+					}
 				})
 				.catch(() => {
 					navigate("/account/creationorconnexion");
@@ -54,6 +65,7 @@ function Account() {
 				<ButtonsJavaEdition taille="19" title="GLOBAL.BACK" path="/"/>
 				<ButtonsJavaEdition taille="19" title="PROFIL.DECONECT" onClick={handleLogout}/>
 			</div>
+			{notificationMessage && <Notification message={notificationMessage.text} type={notificationMessage.type}/>}
 		</div>
 	);
 }
