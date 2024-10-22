@@ -1,4 +1,3 @@
-// src/components/GiveEnchantedItems/GiveEnchantedItems.tsx
 import React, {useEffect, useState} from "react";
 import ButtonsJavaEdition from "../utilities/ButtonsJavaEdition";
 import GiveEnchanteditems_Enchantments from "./assets/GiveEnchanteditems_Enchantments";
@@ -27,15 +26,18 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 	const [notificationMessage, setNotificationMessage] = useState<{ text: string, type: string } | null>(null);
 	const [showDefaultOption, setShowDefaultOption] = useState(true);
 	const [isCopyDisabled, setIsCopyDisabled] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 	const {t} = useTranslation();
 
 	// Fetch the item data from the back-end when the component mounts.
 	useEffect(() => {
+		setIsLoading(true); // Set loading to true before fetching data
 		fetch(`${process.env.REACT_APP_HOST_BACK}/getItem`)
 			.then(response => response.json())
 			.then((data: Item[]) => {
 				console.log(data); // Log the response data
 				setData(data);
+				setIsLoading(false); // Set loading to false after data is received
 			});
 	}, []);
 
@@ -86,7 +88,6 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 	useEffect(() => {
 		renderEnchantment(item, selectedItem, enchantmentValues, username, material);
 	}, [item, selectedItem, enchantmentValues, username, material, version, language]);
-
 
 	// Generate the enchantment command based on the item, selected item, enchantment values, username, material, and
 	// isMaterialDisabled.
@@ -213,11 +214,18 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 				<div className="input-block">
 					<label htmlFor="item" className="text-minecraft">{t("GIVE_ENCHANTED_ITEMS.ITEM")}</label>
 					<select className="minecraft-input fixed-width" name="item" id="item"
-							value={item} onChange={handleSelectItemChange}>
-						{showDefaultOption && <option value="null">{t("GIVE_ENCHANTED_ITEMS.SELECT_ITEM")}</option>}
-						{data && data.filter(item => version && version >= item.version).map((item, index) => (
-							<option key={index} value={item.identifier}>{t(`MINECRAFT.ITEMS.${item.identifier.toUpperCase()}`)}</option>
-						))}
+							value={item} onChange={handleSelectItemChange} disabled={isLoading}>
+						{isLoading ? (
+							<option value="loading">{t("GLOBAL.LOADING")}</option>
+						) : (
+							<>
+								{showDefaultOption &&
+                                    <option value="null">{t("GIVE_ENCHANTED_ITEMS.SELECT_ITEM")}</option>}
+								{data && data.filter(item => version && version >= item.version).map((item, index) => (
+									<option key={index} value={item.identifier}>{t(`MINECRAFT.ITEMS.${item.identifier.toUpperCase()}`)}</option>
+								))}
+							</>
+						)}
 					</select>
 				</div>
 

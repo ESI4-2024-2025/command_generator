@@ -1,6 +1,7 @@
 {
   "GLOBAL": {
-    "BACK": "Retour"
+    "BACK": "Retour",
+    "LOADING": "Chargement..."
   },
   "HOME": {
     "COMMANDES": "Commandes",

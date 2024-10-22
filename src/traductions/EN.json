@@ -1,6 +1,7 @@
 {
   "GLOBAL": {
-    "BACK": "Back"
+    "BACK": "Back",
+    "LOADING": "Loading..."
   },
   "HOME": {
     "COMMANDES": "Commands",
