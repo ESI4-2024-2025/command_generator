@@ -2,13 +2,7 @@ import React, {useEffect, useState} from "react";
 import ButtonsJavaEdition from "../../utilities/ButtonsJavaEdition";
 import "../../../styles/InputJavaEdition.css";
 import {useTranslation} from "react-i18next";
-
-interface Enchantment {
-	_id: string;
-	nom: string;
-	identifier: string;
-	lvlMax: number;
-}
+import Enchantment from "../../../interfaces/Enchantment";
 
 interface GiveCommand_EnchantmentsProps {
 	enchantments: Enchantment[];
@@ -22,7 +16,8 @@ const GiveEnchanteditems_Enchantments: React.FC<GiveCommand_EnchantmentsProps> =
 																			   resetValues
 																		   }) => {
 	const [values, setValues] = useState<number[]>([]);
-	const { t } = useTranslation();
+	const {t} = useTranslation();
+	const selectedVersion: number | null = localStorage.getItem("selectedVersion") ? Number(localStorage.getItem("selectedVersion")) : null;
 
 	useEffect(() => {
 		if (resetValues) {
@@ -59,15 +54,14 @@ const GiveEnchanteditems_Enchantments: React.FC<GiveCommand_EnchantmentsProps> =
 	return (
 		<div className="main-container">
 			{enchantments && enchantments.map((enchantment, index) => (
-				<div key={index} className="input-block">
-					<label htmlFor={`input${index}`} className="text-minecraft">{t(`MINECRAFT.ENCHANTMENTS.${enchantment.identifier.toUpperCase()}`)}</label>
-					<ButtonsJavaEdition taille="square" title="-" onClick={() => minus(index)}
-										disabled={values[index] === 0}/>
-					<input className="minecraft-input enchantement-value-input" id={`input${index}`} type="text" min="0"
-						   max={enchantment.lvlMax} value={values[index]} disabled/>
-					<ButtonsJavaEdition taille="square" title="+" onClick={() => plus(index, enchantment.lvlMax)}
-										disabled={values[index] === enchantment.lvlMax}/>
-				</div>
+				selectedVersion && selectedVersion >= enchantment.version ? (
+					<div key={index} className="input-block">
+						<label htmlFor={`input${index}`} className="text-minecraft">{t(`MINECRAFT.ENCHANTMENTS.${enchantment.identifier.toUpperCase()}`)}</label>
+						<ButtonsJavaEdition taille="square" title="-" onClick={() => minus(index)} disabled={values[index] === 0}/>
+						<input className="minecraft-input enchantement-value-input" id={`input${index}`} type="text" min="0" max={enchantment.lvlMax} value={values[index]} disabled/>
+						<ButtonsJavaEdition taille="square" title="+" onClick={() => plus(index, enchantment.lvlMax)} disabled={values[index] === enchantment.lvlMax}/>
+					</div>
+				) : null
 			))}
 		</div>
 	);

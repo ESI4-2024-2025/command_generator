@@ -2,11 +2,16 @@ import React from "react";
 import {useTranslation} from "react-i18next";
 import "../../styles/LanguageSelector.css";
 
-const LanguageSelector: React.FC = () => {
+interface LanguageSelectorProps {
+	setLanguage: (lng: string) => void;
+}
+
+const LanguageSelector: React.FC<LanguageSelectorProps> = ({setLanguage}) => {
 	const {i18n} = useTranslation();
 
 	const changeLanguage = (lng: string) => {
 		i18n.changeLanguage(lng);
+		setLanguage(lng);
 	};
 
 	return (
