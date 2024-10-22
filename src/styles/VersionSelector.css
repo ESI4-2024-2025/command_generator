@@ -12,3 +12,7 @@
     top:              2vh;
     z-index:          1000;
 }
+
+.bold-option {
+    font-weight: bold;
+}
