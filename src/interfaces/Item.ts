@@ -7,6 +7,7 @@ interface Item {
 	identifier: string;
 	enchantement: Enchantement[];
 	materiaux: Materiaux[];
+	version: number;
 }
 
 export default Item;

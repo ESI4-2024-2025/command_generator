@@ -10,7 +10,7 @@ import {generateEnchantmentCommand} from "./Generator";
 import Item from "../../interfaces/Item";
 
 interface GiveEnchantedItemsProps {
-	version: string;
+	version: number;
 	language: string;
 }
 
@@ -29,6 +29,7 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 	const [isCopyDisabled, setIsCopyDisabled] = useState(false);
 	const {t} = useTranslation();
 
+	// Fetch the item data from the back-end when the component mounts.
 	useEffect(() => {
 		fetch(`${process.env.REACT_APP_HOST_BACK}/getItem`)
 			.then(response => response.json())
@@ -38,6 +39,7 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 			});
 	}, []);
 
+	// Reset the selected item, enchantment values, username, material, and enchantmentRenderedSwitch if the selected item is "null".
 	useEffect(() => {
 		if (item === "null") {
 			setSelectedItem(null);
@@ -49,6 +51,19 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 		}
 	}, [item]);
 
+	// Reset the selected item, enchantment values, and material if the selected item is not found in the data or if the version is lower than the selected item's version.
+	useEffect(() => {
+		const selectedItem = data.find(dataItem => dataItem.identifier === item);
+		if (!selectedItem || version < selectedItem.version) {
+			setShowDefaultOption(true);
+			setSelectedItem(null);
+			setEnchantmentValues([]);
+			setMaterial("null");
+			setItem("null");
+		}
+	}, [version, data]);
+
+	// Set the enchantmentRenderedSwitch when the selected item changes.
 	useEffect(() => {
 		if (selectedItem !== null) {
 			setEnchantementRenderedSwitch(enchantmentRenderSwitch(item));
@@ -61,10 +76,12 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 		}
 	}, [selectedItem, item, version]);
 
+	// Generate the enchantment command when the item, selected item, enchantment values, username, material, version, or language changes.
 	useEffect(() => {
 		renderEnchantment(item, selectedItem, enchantmentValues, username, material);
 	}, [item, selectedItem, enchantmentValues, username, material, version, language]);
 
+	// Generate the enchantment command based on the item, selected item, enchantment values, username, material, and isMaterialDisabled.
 	const renderEnchantment = (
 		item: string,
 		selectedItem: any,
@@ -107,6 +124,7 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 		}
 	};
 
+	// Handle the item change event.
 	const handleSelectItemChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		setItem(event.target.value);
 		setIsMaterialDisabled(false); // Reset isMaterialDisabled when item changes
@@ -123,6 +141,7 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 		setShowDefaultOption(false);
 	};
 
+	// Handle the username change event.
 	const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value;
 		const regex = /^[a-zA-Z0-9_]*$/;
@@ -131,16 +150,19 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 		}
 	};
 
+	// Handle the material change event.
 	const handleMaterialChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		if (!isMaterialDisabled) {
 			setMaterial(event.target.value);
 		}
 	};
 
+	// Handle the enchantment values change event.
 	const handleEnchantmentValuesChange = (newValues: number[]) => {
 		setEnchantmentValues(newValues);
 	};
 
+	// Render the enchantment values based on the item identifier.
 	const enchantmentRenderSwitch = (itemId: string) => {
 		const itemData = data.find(item => item.identifier === itemId);
 		if (!itemData || !itemData.enchantement) {
@@ -156,13 +178,20 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 		);
 	};
 
+	// Copy the command to the clipboard.
 	const copyToClipboard = () => {
 		if (isCopyDisabled) {
 			setNotificationMessage({text: "impossible de copier une commande vide", type: "info"});
 			setTimeout(() => setNotificationMessage(null), 3000);
 		} else {
-			navigator.clipboard.writeText(commandResult);
-			setNotificationMessage({text: "Copie dans le presse papier", type: "success"});
+			navigator.clipboard.writeText(commandResult).then(r => setNotificationMessage({
+					text: "Copie dans le presse papier",
+					type: "success"
+				}))
+				.catch(() => setNotificationMessage({
+					text: "Erreur lors de la copie",
+					type: "error"
+				}));
 			setTimeout(() => setNotificationMessage(null), 3000);
 		}
 	};
@@ -176,9 +205,9 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 				<div className="input-block">
 					<label htmlFor="item" className="text-minecraft">{t("GIVE_ENCHANTED_ITEMS.ITEM")}</label>
 					<select className="minecraft-input fixed-width" name="item" id="item"
-							onChange={handleSelectItemChange}>
+							value={item} onChange={handleSelectItemChange}>
 						{showDefaultOption && <option value="null">{t("GIVE_ENCHANTED_ITEMS.SELECT_ITEM")}</option>}
-						{data && data.map((item, index) => (
+						{data && data.filter(item => version && version >= item.version).map((item, index) => (
 							<option key={index} value={item.identifier}>{t(`MINECRAFT.ITEMS.${item.identifier.toUpperCase()}`)}</option>
 						))}
 					</select>
