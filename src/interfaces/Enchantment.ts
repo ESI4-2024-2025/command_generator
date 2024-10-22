@@ -4,6 +4,7 @@ interface Enchantment {
 	identifier: string;
 	lvlMax: number;
 	version: number;
+	minecraft_id: string;
 }
 
 export default Enchantment;
