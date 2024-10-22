@@ -7,6 +7,7 @@ import "../../styles/GiveEnchantedItems.css";
 import "../../styles/InputJavaEdition.css";
 import {useTranslation} from "react-i18next";
 import {generateEnchantmentCommand} from "./Generator";
+import Item from "../../interfaces/Item";
 
 interface GiveEnchantedItemsProps {
 	version: string;
@@ -27,33 +28,6 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 	const [showDefaultOption, setShowDefaultOption] = useState(true);
 	const [isCopyDisabled, setIsCopyDisabled] = useState(false);
 	const {t} = useTranslation();
-
-	interface Version {
-		_id: string;
-		version: string;
-	}
-
-	interface Enchantement {
-		_id: string;
-		nom: string;
-		identifier: string;
-		lvlMax: number;
-		version: Version[];
-	}
-
-	interface Materiaux {
-		_id: string;
-		nom: string;
-		identifier: string;
-	}
-
-	interface Item {
-		_id: string;
-		nom: string;
-		identifier: string;
-		enchantement: Enchantement[];
-		materiaux: Materiaux[];
-	}
 
 	useEffect(() => {
 		fetch(`${process.env.REACT_APP_HOST_BACK}/getItem`)
@@ -85,7 +59,7 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 				setIsMaterialDisabled(false);
 			}
 		}
-	}, [selectedItem, item]);
+	}, [selectedItem, item, version]);
 
 	useEffect(() => {
 		renderEnchantment(item, selectedItem, enchantmentValues, username, material);
@@ -172,8 +146,14 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 		if (!itemData || !itemData.enchantement) {
 			return null;
 		}
-		return <GiveEnchanteditems_Enchantments enchantments={itemData.enchantement}
-												onValuesChange={handleEnchantmentValuesChange} resetValues={true}/>;
+		return (
+			<GiveEnchanteditems_Enchantments
+				key={version} // pour forcer le reload a chaque changement de version
+				enchantments={itemData.enchantement}
+				onValuesChange={handleEnchantmentValuesChange}
+				resetValues={true}
+			/>
+		);
 	};
 
 	const copyToClipboard = () => {
