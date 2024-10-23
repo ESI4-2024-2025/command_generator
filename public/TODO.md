@@ -1,6 +1,10 @@
 # Todo
 
-# Petit oeuvre
+## Petit oeuvre
+
+- renommer les fichiers et dossier give enchant
+- renommer le /give dans le app.tsx
+- virer les console.log
 
 ## Gros oeuvre (sur branche)
 
