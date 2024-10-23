@@ -1,3 +1,11 @@
+# v4.1.1
+
+*23-10-2024*
+
+- ajout de la 1.21.1 et 1.21.2 dans les versions de minecraft
+
+___
+
 # v4.1
 
 *22-10-2024*

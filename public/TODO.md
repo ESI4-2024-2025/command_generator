@@ -8,7 +8,6 @@
 - faire une page de potions
 - ajouter des logs dans le back
 - faire une base pas en prod, soit une base de dev
-- faire des tests unitaires
 
 ## database
 

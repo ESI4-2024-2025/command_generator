@@ -20,6 +20,8 @@ const VersionSelector: React.FC<VersionSelectorProps> = ({setVersion}) => {
 	return (
 		<div className="version-selector">
 			<select onChange={changeVersion} defaultValue={localStorage.getItem("selectedVersion") || "2100"}>
+				<option value="2020">1.21.2</option>
+				<option value="2010">1.21.1</option>
 				<option value="2100" className="bold-option">1.21</option>
 				<option value="2060">1.20.6</option>
 				<option value="2050">1.20.5</option>
