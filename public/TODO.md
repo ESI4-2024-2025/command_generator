@@ -5,6 +5,7 @@
 - renommer les fichiers et dossier give enchant
 - renommer le /give dans le app.tsx
 - virer les console.log
+- virer les "nom" dans les interfaces
 
 ## Gros oeuvre (sur branche)
 
