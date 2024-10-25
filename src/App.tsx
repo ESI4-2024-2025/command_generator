@@ -8,10 +8,9 @@ import Account from "./components/UserSection/Account";
 import Admin from "./components/Admin/Admin";
 import Changelog from "./components/Changelog/Changelog";
 import LanguageSelector from "./components/Languageselector/LanguageSelector";
-import VersionSelector from "./components/VersionSelector/VersionSelector";
-import PotionCommand from "./components/PotionCommand/PotionCommand";
 import NotFound from "./components/404";
 import GiveEnchantedItems from "./components/GiveEnchantedItem/GiveEnchantedItems";
+import PotionCommand from "./components/PotionCommand/PotionCommand";
 import Forbidden from "./components/403";
 import ProtectedRoute from "./components/utilities/ProtectedRoute";
 
