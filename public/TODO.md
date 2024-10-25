@@ -7,6 +7,7 @@
 - virer les console.log
 - virer les "nom" dans les interfaces
 - voir si on bouge la version de minecraft d'endroit
+- ajouter une colone avec le nom du générateur dans les commandes générées
 
 ## Gros oeuvre (sur branche)
 
