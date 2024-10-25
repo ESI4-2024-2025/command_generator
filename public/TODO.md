@@ -8,6 +8,7 @@
 - virer les "nom" dans les interfaces
 - voir si on bouge la version de minecraft d'endroit
 - ajouter une colone avec le nom du générateur dans les commandes générées
+- mettre la popup en bas a gauche (ça cache rien comme ça)
 
 ## Gros oeuvre (sur branche)
 
