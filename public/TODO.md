@@ -6,6 +6,7 @@
 - renommer le /give dans le app.tsx
 - virer les console.log
 - virer les "nom" dans les interfaces
+- voir si on bouge la version de minecraft d'endroit
 
 ## Gros oeuvre (sur branche)
 
