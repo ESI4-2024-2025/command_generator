@@ -36,7 +36,7 @@ export const generateEnchantmentCommand = (
 		}
 
 		return `/give ${username ? username : "@p"} ${isMaterialDisabled ? item : `${material}_${item}`}${enchantments}`;
-	} else if (selectedVersion && selectedVersion >= 1300 && selectedVersion <= 2050) {
+	} else if (selectedVersion && selectedVersion >= 1300 && selectedVersion <= 2005) {
 		let enchantments: string = "";
 
 		if (enchantmentValues.length > 0 && selectedItem && selectedItem.enchantement) {
@@ -58,7 +58,7 @@ export const generateEnchantmentCommand = (
 		}
 
 		return `/give ${username ? username : "@p"} ${isMaterialDisabled ? item : `${material}_${item}`}${enchantments}`;
-	} else if (selectedVersion && selectedVersion >= 2060) {
+	} else if (selectedVersion && selectedVersion >= 2006) {
 		let enchantements: string = "";
 
 		if (enchantmentValues.length > 0 && selectedItem && selectedItem.enchantement) {

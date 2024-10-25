@@ -1,3 +1,11 @@
+# v4.1.2
+
+*25-10-2024*
+
+- fix: bug dans la gestion des versions
+
+___
+
 # v4.1.1
 
 *23-10-2024*

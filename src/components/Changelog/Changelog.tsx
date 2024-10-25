@@ -5,11 +5,17 @@ import ReactMarkdown from "react-markdown";
 
 function Changelog() {
 
-	const markdownContent = `# v4.1.1
+	const markdownContent = `# v4.1.2
+
+*25-10-2024*
+
+- fix: bug dans la gestion des versions
+
+___
+
+# v4.1.1
 
 *23-10-2024*
-
-**Global :**
 
 - ajout de la 1.21.1 et 1.21.2 dans les versions de minecraft
 
