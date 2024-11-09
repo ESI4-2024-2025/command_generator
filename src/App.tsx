@@ -9,6 +9,7 @@ import Account from "./components/UserSection/Account";
 import Changelog from "./components/Changelog/Changelog";
 import LanguageSelector from "./components/Languageselector/LanguageSelector";
 import VersionSelector from "./components/VersionSelector/VersionSelector";
+import NotFound from "./components/404";
 
 function App() {
 	const [version, setVersion] = useState("");
@@ -26,6 +27,7 @@ function App() {
 					<Route path="/account" element={<Account/>}/>
 					<Route path="/account/creationorconnexion" element={<AccountCreationOrConnexion/>}/>
 					<Route path="/changelog" element={<Changelog/>}/>
+					<Route path="*" element={<NotFound/>}/>
 				</Routes>
 			</BrowserRouter>
 		</div>
