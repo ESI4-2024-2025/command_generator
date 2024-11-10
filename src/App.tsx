@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import "./styles/App.css";
 import Commands from "./components/Commands";
-import GiveEnchantedItems from "./components/GiveCommand/GiveEnchantedItems";
+import GiveEnchantedItems from "./components/GiveEnchantedItem/GiveEnchantedItems";
 import Home from "./Home";
 import AccountCreationOrConnexion from "./components/UserSection/AccountCreationOrConnexion";
 import Account from "./components/UserSection/Account";
