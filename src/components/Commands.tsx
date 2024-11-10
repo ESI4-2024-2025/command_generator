@@ -1,3 +1,4 @@
+import React from "react";
 import ButtonsJavaEdition from "./utilities/ButtonsJavaEdition";
 import "../styles/Commands.css";
 import {useTranslation} from "react-i18next";
