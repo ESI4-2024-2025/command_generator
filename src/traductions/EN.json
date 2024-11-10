@@ -3,6 +3,10 @@
     "BACK": "Back",
     "LOADING": "Loading..."
   },
+  "404": {
+    "MESSAGE": "The page you are looking for does not exist.",
+    "BACK": "Back to home"
+  },
   "HOME": {
     "COMMANDES": "Commands",
     "PROFIL": "Profile",
