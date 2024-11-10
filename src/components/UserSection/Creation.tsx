@@ -14,7 +14,7 @@ function Creation() {
 	const [notificationMessage, setNotificationMessage] = useState<string | undefined>(undefined);
 	const [notificationType, setNotificationType] = useState<string | undefined>(undefined);
 	const navigate = useNavigate();
-	const { t } = useTranslation();
+	const {t} = useTranslation();
 
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
@@ -27,8 +27,7 @@ function Creation() {
 			});
 			localStorage.setItem("accessToken", response.data.accessToken);
 			navigate("/account");
-		} catch
-			(err) {
+		} catch {
 			setNotificationMessage(undefined); // Reset notification message
 			setNotificationType(undefined); // Reset notification type
 			setTimeout(() => {

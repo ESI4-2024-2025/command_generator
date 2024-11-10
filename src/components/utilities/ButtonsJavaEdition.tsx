@@ -1,3 +1,4 @@
+import React from "react";
 import {useNavigate} from "react-router-dom";
 import "../../styles/ButtonsJavaEdition.css";
 import { useTranslation } from "react-i18next";

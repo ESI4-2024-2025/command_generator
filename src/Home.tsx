@@ -1,6 +1,6 @@
+import React, {useEffect} from "react";
 import ButtonsJavaEdition from "./components/utilities/ButtonsJavaEdition";
 import "./styles/Home.css";
-import {useEffect} from "react";
 import logo from "./img/Logo.png";
 
 function Home() {

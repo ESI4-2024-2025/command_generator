@@ -1,12 +1,12 @@
 import Enchantement from './Enchantment';
-import Materiaux from './Materiaux';
+import Material from './Material';
 
 interface Item {
 	_id: string;
 	nom: string;
 	identifier: string;
 	enchantement: Enchantement[];
-	materiaux: Materiaux[];
+	materiaux: Material[];
 	version: number;
 }
 

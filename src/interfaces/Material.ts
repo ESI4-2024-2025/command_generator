@@ -1,8 +1,8 @@
-interface Materiaux {
+interface Material {
 	_id: string;
 	nom: string;
 	identifier: string;
 	version: number;
 }
 
-export default Materiaux;
+export default Material;
