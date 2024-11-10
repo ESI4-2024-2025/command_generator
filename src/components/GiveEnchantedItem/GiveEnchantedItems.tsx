@@ -35,7 +35,6 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({version, languag
 		fetch(`${process.env.REACT_APP_HOST_BACK}/getItem`)
 			.then(response => response.json())
 			.then((data: Item[]) => {
-				console.log(data);
 				setData(data);
 				setIsLoading(false);
 			});
