@@ -11,7 +11,7 @@ function Commands() {
 			<h1 className="commands-title">{t("COMMANDS.TITLE")}</h1>
 			<div className="commands" data-testid="Home">
 				<div className="commands-buttons">
-					<ButtonsJavaEdition title="COMMANDS.GIVE_ENCHANTED_ITEMS" taille="35" path="give"/>
+					<ButtonsJavaEdition title="COMMANDS.GIVE_ENCHANTED_ITEMS" taille="35" path="giveenchanteditems"/>
 				</div>
 			</div>
 			<div className="back-button">
