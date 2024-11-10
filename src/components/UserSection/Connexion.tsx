@@ -21,7 +21,7 @@ function Connexion() {
 			const response = await axios.post(`${process.env.REACT_APP_HOST_BACK}/users/login`, {email, password});
 			localStorage.setItem("accessToken", response.data.accessToken);
 			navigate("/account");
-		} catch (err) {
+		} catch {
 			setNotificationMessage(undefined); // Reset notification message
 			setNotificationType(undefined); // Reset notification type
 			setTimeout(() => {
