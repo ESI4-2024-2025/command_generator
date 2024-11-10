@@ -1,11 +1,9 @@
 import React from "react";
-import {useNavigate} from "react-router-dom";
 import ButtonsJavaEdition from "./utilities/ButtonsJavaEdition";
 import "../styles/404.css";
 import {useTranslation} from "react-i18next";
 
 const NotFound = () => {
-	const navigate = useNavigate();
 	const { t } = useTranslation();
 
 	return (
