@@ -19,7 +19,6 @@ export const generateEnchantmentCommand = (
 
 		if (enchantmentValues.length > 0 && selectedItem && selectedItem.enchantement) {
 			let index = 0;
-			console.log(selectedItem);
 			enchantmentValues.forEach((value) => {
 				if (value > 0 && selectedItem.enchantement[index]) {
 					enchantments = enchantments + `{id:${selectedItem.enchantement[index].minecraft_id},lvl:${value.toString()}s}`;
@@ -41,7 +40,6 @@ export const generateEnchantmentCommand = (
 
 		if (enchantmentValues.length > 0 && selectedItem && selectedItem.enchantement) {
 			let index = 0;
-			console.log(selectedItem);
 			enchantmentValues.forEach((value) => {
 				if (value > 0 && selectedItem.enchantement[index]) {
 					enchantments = enchantments + `{id:${selectedItem.enchantement[index].identifier},lvl:${value.toString()}s}`;
@@ -63,7 +61,6 @@ export const generateEnchantmentCommand = (
 
 		if (enchantmentValues.length > 0 && selectedItem && selectedItem.enchantement) {
 			let index = 0;
-			console.log(selectedItem);
 			enchantmentValues.forEach((value) => {
 				if (value > 0 && selectedItem.enchantement[index]) {
 					enchantements = enchantements + `'${selectedItem.enchantement[index].identifier}':${value.toString()},`;

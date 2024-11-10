@@ -22,7 +22,6 @@ function Connexion() {
 			localStorage.setItem("accessToken", response.data.accessToken);
 			navigate("/account");
 		} catch (err) {
-			console.log(err);
 			setNotificationMessage(undefined); // Reset notification message
 			setNotificationType(undefined); // Reset notification type
 			setTimeout(() => {
