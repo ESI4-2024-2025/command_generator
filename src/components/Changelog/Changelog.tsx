@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 
 function Changelog() {
 
-	const markdownContent = `#v4.3
+	const markdownContent = `# v4.3
 
 *22/11/2024*
 
