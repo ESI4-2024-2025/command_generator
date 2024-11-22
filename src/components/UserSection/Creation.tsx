@@ -9,7 +9,6 @@ import {useTranslation} from "react-i18next";
 function Creation() {
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
-	const [phone, setPhone] = useState("");
 	const [password, setPassword] = useState("");
 	const [notificationMessage, setNotificationMessage] = useState<string | undefined>(undefined);
 	const [notificationType, setNotificationType] = useState<string | undefined>(undefined);
@@ -22,7 +21,6 @@ function Creation() {
 			const response = await axios.post(`${process.env.REACT_APP_HOST_BACK}/users/register`, {
 				username,
 				email,
-				phone,
 				password
 			});
 			localStorage.setItem("accessToken", response.data.accessToken);
@@ -77,18 +75,6 @@ function Creation() {
 							className="minecraft-input fixed-size creation-input"
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
-						/>
-					</div>
-				</div>
-				<div className="creation-input-block">
-					<div className="creation-input-wrapper">
-						<label htmlFor="phone" className="creation-label">{t("CONNEXION_CREATION.PHONE")}</label>
-						<input
-							type="text"
-							id="phone"
-							className="minecraft-input fixed-size creation-input"
-							value={phone}
-							onChange={(e) => setPhone(e.target.value)}
 						/>
 					</div>
 				</div>
