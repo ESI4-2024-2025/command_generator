@@ -30,3 +30,4 @@ jobs:
           git add .
           git commit -m "Update submodules to latest changes"
           git push
+          
