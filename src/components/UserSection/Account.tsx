@@ -11,7 +11,6 @@ function Account() {
 	const [userInfo, setUserInfo] = useState({
 		username: "",
 		email: "",
-		phone: ""
 	});
 	type NotificationMessage = {
 		text: string;
@@ -31,8 +30,8 @@ function Account() {
 				}
 			})
 				.then(response => {
-					const {username, email, phone, email_verified} = response.data;
-					setUserInfo({username, email, phone});
+					const {username, email, email_verified} = response.data;
+					setUserInfo({username, email});
 					if (!email_verified) {
 						setNotificationMessage({
 							text: t("PROFIL.MAIL_UNVERIFIED"),
@@ -58,7 +57,6 @@ function Account() {
 				<div className="account-information text-minecraft">
 					<p>{t("PROFIL.USERNAME")} : {userInfo.username}</p>
 					<p>{t("PROFIL.MAIL")} : {userInfo.email}</p>
-					<p>{t("PROFIL.PHONE")} : {userInfo.phone}</p>
 				</div>
 			</div>
 			<div className="account-buttons">
