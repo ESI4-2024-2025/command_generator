@@ -30,8 +30,8 @@ const GiveEnchantedItems: React.FC<GiveEnchantedItemsProps> = ({language}) => {
 	const [isCopyDisabled, setIsCopyDisabled] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 	const {t} = useTranslation();
+	const version = Number(versionString);
 
-	let version = Number(versionString);
 	useEffect(() => {
 		setIsLoading(true);
 		fetch(`${process.env.REACT_APP_HOST_BACK}/getItem`)
