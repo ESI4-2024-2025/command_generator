@@ -1,0 +1,32 @@
+name: Update Submodules
+
+on:
+  push:
+    branches:
+      - main
+      - testSubmoduleUpdate
+
+jobs:
+  update-submodules:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Setup Git credentials
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Update Submodules
+        run: |
+          git submodule update --remote --merge
+          git add .
+          git commit -m "Update submodules to latest changes"
+          git push
