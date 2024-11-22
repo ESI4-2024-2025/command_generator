@@ -5,7 +5,17 @@ import ReactMarkdown from "react-markdown";
 
 function Changelog() {
 
-	const markdownContent = `# v4.1.2
+	const markdownContent = `v4.3
+
+*22/11/2024*
+
+- pop up de notification déplacée en bas a gauche
+- ajout d'une page 404
+- retrait du numéro de téléphone dans la création de compte et les informations de profil
+
+___
+
+# v4.1.2
 
 *25-10-2024*
 
