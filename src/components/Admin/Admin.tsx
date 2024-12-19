@@ -1,6 +1,5 @@
 import {useTranslation} from "react-i18next";
 import React, {useEffect} from "react";
-import axios from "axios";
 import "../../styles/Admin.css";
 import ButtonsJavaEdition from "../utilities/ButtonsJavaEdition";
 import {useNavigate} from "react-router-dom";

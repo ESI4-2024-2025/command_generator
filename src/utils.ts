@@ -1,5 +1,5 @@
 import axios from "axios";
-import {NavigateFunction, useNavigate} from "react-router-dom";
+import {NavigateFunction} from "react-router-dom";
 
 export function forbidAccessToAdminResource(navigate: NavigateFunction) {
     const token = localStorage.getItem("accessToken");
