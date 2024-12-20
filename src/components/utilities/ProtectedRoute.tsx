@@ -1,7 +1,6 @@
-import React, {Children, ReactNode, useEffect, useState} from "react";
+import React, {ReactNode, useEffect, useState} from "react";
 import "../../styles/Admin.css";
 import {Navigate, useNavigate} from "react-router-dom";
-import PropTypes from 'prop-types';
 import axios from "axios";
 
 interface ProtectedRouteProps {
