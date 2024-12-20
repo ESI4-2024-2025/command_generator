@@ -8,7 +8,7 @@
     "BACK": "Retour a l'accueil"
   },
   "403": {
-    "MESSAGE": "Vous n'êtes pas autorisé à accéder à cette page.",
+    "MESSAGE": "Vous n'êtes pas autorise à acceder à cette page.",
     "BACK": "Retour a l'accueil"
   },
   "HOME": {
@@ -17,8 +17,7 @@
     "CHANGELOG": "Changelog"
   },
   "ADMIN": {
-    "TITLE": "Administration",
-    "UNWELCOME": "Cet endroit est réservé aux admins."
+    "TITLE": "Administration"
   },
   "CONNEXION_CREATION": {
     "CREATION": "Creation de compte",

@@ -11,6 +11,7 @@ import LanguageSelector from "./components/Languageselector/LanguageSelector";
 import NotFound from "./components/404";
 import GiveEnchantedItems from "./components/GiveEnchantedItem/GiveEnchantedItems";
 import Forbidden from "./components/403";
+import ProtectedRoute from "./components/utilities/ProtectedRoute";
 
 function App() {
 	const [language, setLanguage] = useState("");
@@ -26,7 +27,11 @@ function App() {
 					<Route path="/account" element={<Account/>}/>
 					<Route path="/account/creationorconnexion" element={<AccountCreationOrConnexion/>}/>
 					<Route path="/changelog" element={<Changelog/>}/>
-					<Route path="/admin" element={<Admin/>}/>
+					<Route path="/admin" element={
+						<ProtectedRoute role='admin'>
+							<Admin/>
+						</ProtectedRoute>
+					}/>
 					<Route path="/forbidden" element={<Forbidden/>}/>
 					<Route path="*" element={<NotFound/>}/>
 				</Routes>
