@@ -7,13 +7,15 @@ import Potions from "../../interfaces/Potions";
 import Notification from "../utilities/Notification";
 import Effect from "../../interfaces/Effect";
 import {generatePotionCommand} from "./Generator";
+import VersionSelector from "../VersionSelector/VersionSelector";
 
 interface PotionCommandProps {
-	version: number;
 	language: string;
 }
 
-const PotionCommand: React.FC<PotionCommandProps> = ({version, language}) => {
+const PotionCommand: React.FC<PotionCommandProps> = ({language}) => {
+	const [versionString, setVersion] = useState("");
+	const version = Number(versionString);
 	const [data, setData] = useState<Potions[]>([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [potionType, setPotionType] = useState("potion");
@@ -44,8 +46,12 @@ const PotionCommand: React.FC<PotionCommandProps> = ({version, language}) => {
 	 */
 	useEffect(() => {
 		const newCommand = generatePotionCommand(potionType, username, potionParams, version);
-		setCommandResult(newCommand);
-	}, [potionType, username, potionParams, data]);
+		if (newCommand !== "error") {
+			setCommandResult(newCommand);
+		}else {
+			setCommandResult("version non supportee");
+		}
+	}, [potionType, username, potionParams, data, version]);
 
 	/**
 	 * update the command result when the potion type or username
@@ -121,6 +127,7 @@ const PotionCommand: React.FC<PotionCommandProps> = ({version, language}) => {
 		<div className="potion-command">
 			<div className="back-button-container">
 				<ButtonsJavaEdition taille="20" title="GLOBAL.BACK" path="goback"/>
+				<VersionSelector setVersion={setVersion}/>
 			</div>
 			<div className="potion-command-main-container">
 				<div className="input-block">
